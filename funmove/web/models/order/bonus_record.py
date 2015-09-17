@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from web.models.member.user_info import UserInfo
-from web.models.member.group_info import GroupInfo
+from web.models.member import UserInfo, GroupInfo
 from bonus_type import BonusType
 
 # 優惠記錄

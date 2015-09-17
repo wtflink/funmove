@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from payment_option import PaymentOption
-from web.models.member.user_info import UserInfo
-from web.models.member.group_info import GroupInfo
+from web.models.member import UserInfo, GroupInfo
 
 # 付款記錄
 class PaymentRecords(models.Model):

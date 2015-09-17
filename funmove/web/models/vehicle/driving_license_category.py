@@ -10,21 +10,21 @@ class DrivingLicenseCategory(models.Model):
     business = models.BooleanField(default=False)
     # 可以行駛的車種，一定要建檔，True表示可以，反之不行
     # 大貨車
-    LargeTrucks = models.BooleanField(null=False, blank=False)
+    LargeTrucks = models.BooleanField(null=False, blank=False, default=None)
     # 連結車
-    Trailer = models.BooleanField(null=False, blank=False)
+    Trailer = models.BooleanField(null=False, blank=False, default=None)
     # 大客車
-    Bus = models.BooleanField(null=False, blank=False)
+    Bus = models.BooleanField(null=False, blank=False, default=None)
     # 小型車
-    Van = models.BooleanField(null=False, blank=False)
+    Van = models.BooleanField(null=False, blank=False, default=None)
     # 大型重型機車
-    LargeHeavyMotorcycle = models.BooleanField(null=False, blank=False)
+    LargeHeavyMotorcycle = models.BooleanField(null=False, blank=False, default=None)
     # 普通重型機車
-    OriginalHeavyMotorcycle = models.BooleanField(null=False, blank=False)
+    OriginalHeavyMotorcycle = models.BooleanField(null=False, blank=False, default=None)
     # 普通輕型機車
-    LightMotorcycle = models.BooleanField(null=False, blank=False)
+    LightMotorcycle = models.BooleanField(null=False, blank=False, default=None)
     # 小型輕型機車
-    SmallLightMotorcycle = models.BooleanField(null=False, blank=False)
+    SmallLightMotorcycle = models.BooleanField(null=False, blank=False, default=None)
 
     create_date = models.DateTimeField(auto_now_add=True, auto_now=False)
     update_date = models.DateTimeField(auto_now_add=False, auto_now=True)

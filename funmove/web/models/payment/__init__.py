@@ -1,4 +1,4 @@
-import card_payment
-import credit_card_type
-import payment_records
-import payment_option
+from card_payment import CardPayment
+from credit_card_type import CreditCardType
+from payment_records import PaymentRecords
+from payment_option import PaymentOption

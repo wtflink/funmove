@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from web.models.member.user_info import UserInfo
-from web.models.member.group_info import GroupInfo
-from web.models.member.driver_info import DriverInfo
+from web.models.member import UserInfo, GroupInfo, DriverInfo
 from order_state import OrderState
 from web.models.payment.payment_records import PaymentRecords
 

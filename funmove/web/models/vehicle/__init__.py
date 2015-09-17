@@ -1,11 +1,11 @@
-import compulsory_insurance
-import driving_license
-import driving_license_category
-import police_clearance
-import vehicle
-import vehicle_accessories
-import vehicle_band
-import vehicle_band_model
-import vehicle_category
-import vehicle_license
-import vehicle_plate
+from compulsory_insurance import CompulsoryInsurance
+from driving_license import DrivingLicnese
+from driving_license_category import DrivingLicenseCategory
+from police_clearance import PoliceClearance
+from vehicle import Vehicle
+from vehicle_accessories import VehicleAccessories
+from vehicle_band import VehicleBand
+from vehicle_band_model import VehicleBandModel
+from vehicle_category import VehicleCategory
+from vehicle_license import VehicleLicense
+from vehicle_plate import VehiclePlate

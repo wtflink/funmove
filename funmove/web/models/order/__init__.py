@@ -1,5 +1,5 @@
-import bonus_record
-import bonus_type
-import order
-import order_detail
-import order_state
+from bonus_record import BonusRecord
+from bonus_type import BonusType
+from order import Order
+from order_detail import OrderDetail
+from order_state import OrderState

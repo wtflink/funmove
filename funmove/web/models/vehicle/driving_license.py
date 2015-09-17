@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from web.models.member.driver_info import DriverInfo
+from web.models.member import DriverInfo
 from driving_license_category import DrivingLicenseCategory
 # 駕照資料
 class DrivingLicnese(models.Model):

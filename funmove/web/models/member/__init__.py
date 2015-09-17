@@ -1,9 +1,9 @@
-import facebook_account
-import driver_info
-import back_admin
-import group_info
-import user_info
-import industry_category
-import member_account
-import member_type
-import vocation_category
+from facebook_account import FacebookAccount
+from driver_info import DriverInfo
+from back_admin import BackAdmin
+from group_info import GroupInfo
+from user_info import UserInfo
+from industry_category import IndustryCategory
+from member_account import MemberAccount
+from member_type import MemebrType
+from vocation_category import VocationCategory

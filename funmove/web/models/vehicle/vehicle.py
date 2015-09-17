@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from web.models.member.driver_info import DriverInfo
+from web.models.member import DriverInfo
 from vehicle_band_model import VehicleBandModel
 from driving_license import DrivingLicnese
 from police_clearance import PoliceClearance

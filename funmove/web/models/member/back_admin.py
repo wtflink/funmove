@@ -22,4 +22,9 @@ class BackAdmin(models.Model):
         db_table = 'Back_Admin'
 
     def __unicode__(self):
-        pass
+        return u'id = %s,account = %s' % (self.id, self.account)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.id += 1
+        super(BackAdmin, self).save(*args, **kwargs)
