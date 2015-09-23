@@ -7,6 +7,7 @@ urlpatterns = patterns(
 	'',
 	url(r'^$', 'funmove.views.home', name='home'),
 	url(r'^web/', include('web.urls')),
+	# url(r'^accounts/', include('registration.backends.default.urls')),
 	url(r'^admin/', include(admin.site.urls)),
 )
 

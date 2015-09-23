@@ -3,16 +3,23 @@ from django.db import models
 from member_account import MemberAccount
 from industry_category import IndustryCategory
 
+
 # 團體組織的資料，註冊方式不能採用Facebook
 class GroupInfo(models.Model):
     # TODO : GroupInfo 由於django尚不支援 BigInt Auto_increment，所以後續要處理
     id = models.BigIntegerField(primary_key=True)
     name = models.CharField(max_length=45, null=False)
     # 團體組織圖片的上傳路徑
-    photo_url = models.ImageField(upload_to='upload/group_profile_photo/')
+    photo_url = models.ImageField(upload_to='upload/group_profile_photo/', null=True)
     address = models.CharField(max_length=255)
+
     # 會員帳號註冊
-    fk_account = models.OneToOneField('MemberAccount')
+    fk_account = models.OneToOneField(
+        'MemberAccount',
+        null=True,
+        # 不被 CASCADE 影響，變成NULL 如果有設定NULL
+        on_delete=models.SET_NULL
+    )
     fk_industry = models.ForeignKey(
         'IndustryCategory',
         related_name='groups',

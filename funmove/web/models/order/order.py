@@ -3,7 +3,8 @@ from django.db import models
 from web.models.member import UserInfo, GroupInfo, DriverInfo
 from order_state import OrderState
 from web.models.payment.payment_records import PaymentRecords
-
+from moving_require import MovingRequire
+from driver_expection import DriverExpection
 # 訂單
 class Order(models.Model):
     # TODO : Order 由於django尚不支援 BigInt Auto_increment，所以後續要處理
@@ -21,7 +22,10 @@ class Order(models.Model):
     # 司機外鍵
     fk_driver = models.ForeignKey(
         'DriverInfo',
-        related_name='orders'
+        related_name='orders',
+        null=True,
+        # 不被 CASCADE 影響，變成NULL 如果有設定NULL
+        on_delete=models.SET_NULL
     )
     # 兩者只會有一個外鍵，因此可以為 Null
     # 使用者外鍵
@@ -41,7 +45,7 @@ class Order(models.Model):
         on_delete=models.SET_NULL
     )
     # 訂單細節外鍵
-    fk_detail = models.OneToOneField('OrderDetail', to_field=None)
+    fk_detail = models.OneToOneField('OrderDetail')
     # 1-1外鍵，付款資料，每筆付款記錄只會對應到一筆訂單，每一筆訂單會對
     fk_payment_record = models.OneToOneField(
         'PaymentRecords',
@@ -53,6 +57,20 @@ class Order(models.Model):
     fk_state = models.ForeignKey(
         'OrderState',
         related_name='orders'
+    )
+    # 期望司機類型，1-1外鍵
+    fk_driver_expection = models.OneToOneField(
+        'DriverExpection',
+        null=True,
+        # 不被 CASCADE 影響，變成NULL 如果有設定NULL
+        on_delete=models.SET_NULL
+    )
+    # 搬運需求
+    fk_moving_require = models.OneToOneField(
+        'MovingRequire',
+        null=True,
+        # 不被 CASCADE 影響，變成NULL 如果有設定NULL
+        on_delete=models.SET_NULL
     )
 
     class Meta:

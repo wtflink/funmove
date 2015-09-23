@@ -4,4 +4,5 @@ urlpatterns = patterns(
 	'',
 	url(r'^$', 'web.views.index', name='web_index'),
 	url(r'^index/$', 'web.views.index', name='web_index')
+	
 )

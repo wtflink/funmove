@@ -9,7 +9,7 @@ class DriverInfo(models.Model):
     # TODO : DriverInfo 由於django尚不支援 BigInt Auto_increment，所以後續要處理
     id = models.BigIntegerField(primary_key=True)
     # 大頭照的上傳路徑
-    photo_url = models.ImageField(upload_to='upload/user_profile_photo/')
+    photo_url = models.ImageField(upload_to='upload/user_profile_photo/', null=True)
     # 身分證
     identification_number = models.CharField(max_length=10)
     # 出生日
@@ -47,9 +47,19 @@ class DriverInfo(models.Model):
     )
     # 會員帳號註冊
     # OneToOneField 的預設related_name會是類別的lowercase名稱
-    fk_account = models.OneToOneField('MemberAccount')
+    fk_account = models.OneToOneField(
+        'MemberAccount',
+        null=True,
+        # 不被 CASCADE 影響，變成NULL 如果有設定NULL
+        on_delete=models.SET_NULL
+    )
     # 使用Facebook註冊
-    fk_fb_account = models.OneToOneField('FacebookAccount')
+    fk_fb_account = models.OneToOneField(
+        'FacebookAccount',
+         null=True,
+        # 不被 CASCADE 影響，變成NULL 如果有設定NULL
+        on_delete=models.SET_NULL
+    )
 
     create_date = models.DateTimeField(auto_now_add=True, auto_now=False)
     update_date = models.DateTimeField(auto_now_add=False, auto_now=True)

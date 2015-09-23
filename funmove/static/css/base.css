@@ -1,3 +1,36 @@
-p {
-	color:green;
+body {
+	height: 1000px;
+
+}
+.navbar-right {
+	margin-right: 40px;
+}
+
+/* Carousel ===================================================== */
+/* 修改 carousel 的圖片 大小 */
+.carousel-inner img{
+	width: 100%;
+}
+
+
+/* Sidr ===================================================== */
+#mobile-header {
+    display: none;
+}
+@media only screen and (max-width: 767px){
+    #mobile-header {
+        display: block;
+        /*設定為fixed */
+        position: fixed;
+        /* 
+        bootstrap中，因為設定的關係，所以有很多層，因此top fixed指定為1030
+		The bootstrap navbar has a z-index of 1030 so in order for 
+		the bootstro backdrop to cover the navbar you need to adjust 
+		the z-index to be higher than 1030.
+		*/
+        z-index: 1030;
+    }
+    .navbar-header {
+    	display:none;
+    }
 }

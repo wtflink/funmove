@@ -3,14 +3,18 @@ from django.db import models
 from member_type import MemebrType
 from uuidfield import UUIDField
 
+# 第一版本：
+# 為登入使用者，此用此Table記錄，密碼為None。
+# 不處理信箱驗證
+# 會員類型 應為非註冊人員
+
 # 本網站 帳號登入
 class MemberAccount(models.Model):
     # TODO : MemberAccount 由於django尚不支援 BigInt Auto_increment，所以後續要處理
     id = models.BigIntegerField(primary_key=True)
-    # 可以使用 account 或是email 作為登入識別
-    account = models.CharField(unique=True, max_length=45)
+    # email登入
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=45)
+    password = models.CharField(max_length=45, default=None)
     # 電話號碼
     cell_phone = models.CharField(max_length=11, null=False, blank=False)
     # 外鍵，關聯到 MemberType，可以知道屬於哪種MemberType
