@@ -30,7 +30,23 @@ body {
 		*/
         z-index: 1030;
     }
-    .navbar-header {
-    	display:none;
+    #responsive-menu-button img{
+        width: 32px;
+        height: 32px;
+        margin-left: 5px;
+        margin-top: 5px;
+        padding-top: 5px;
+        padding-left: 10px;
+        
     }
+}
+
+#navigation li a {
+    color:#FFF;
+}
+
+#navigation li a:hover {
+    /* 取代原先 bootstrap顏色 為透明 */
+    background-color: transparent;
+    color: 
 }
