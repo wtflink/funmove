@@ -50,3 +50,28 @@ body {
     background-color: transparent;
     color: 
 }
+
+/* Carosuel Slider中的文字介紹 ===================================================== */
+/* 透過子父相對與絕對座標調整 */
+.slider_section {
+    position: relative;
+}
+
+/* 改寫jumbotron */
+.jumbotron {
+    background-color: transparent;
+    position: absolute;
+    top:50px;
+    left: 100px;
+}
+
+.jumbotron h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.jumbotron p {
+    font-size: 22px;
+    color: #FFF;
+}
