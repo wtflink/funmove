@@ -1,0 +1,111 @@
+/* Carosuel Slider中的文字介紹 ===================================================== */
+/* 透過子父相對與絕對座標調整 */
+.slider_section {
+    position: relative;
+}
+
+/* 改寫jumbotron */
+.jumbotron {
+    background-color: transparent;
+    position: absolute;
+    top:50px;
+    left: 100px;
+}
+
+.jumbotron h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.jumbotron p {
+    font-size: 22px;
+    color: #FFF;
+}
+/* 改寫按鈕配色 */
+.btn-green {
+    color: #fff;
+    background-color:rgba(50,187,166,0.9);
+}
+.btn-lg {
+    padding: 8px 30px;
+    border-radius: 3px;
+}
+
+.content_margin {
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.content_margin p {
+    font-size: 16px;
+    line-height: 28px;
+}
+/* 使用者遇到的困難區塊 ===================================================== */
+.user_problem_section {
+    background-color: #f7f8fa;
+    height: 500px;
+}
+
+/* 放心搬流程區塊 ===================================================== */
+.funmove_flow_section {
+    background-color: #FFF;
+    height: 500px;
+}
+
+/* 放心搬特色區塊 ===================================================== */
+.funmove_feature_section {
+    background-color: #f7f8fa;
+    height: 500px;
+}
+.feature_title {
+    text-align: center;
+    margin-top: 30px;
+}
+.feature_title h3{
+    font-size: 28px;
+}
+.feature_title p{
+    padding-top: 10px;
+    font-size: 16px;
+}
+/* 上下排區間 */
+.feature_gap {
+    margin-top: 40px;
+}
+.feature_content img{
+    width: 100px;
+}
+.feature_content h3{
+    margin-top: 10px;
+}
+/* 使用過放心搬的用戶介紹區塊 ===================================================== */
+.used_people_story_section {
+    background-color: #FFF;
+    height: 500px;
+}
+/* 前往訂單頁區塊 ===================================================== */
+.go_order_section {
+    background-color: #36BBA6;
+    height: 400px;
+}
+.go_order_section p {
+    text-align: center;
+    margin-top: 180px;
+}
+.go_order {
+    color: #FFF;
+    font-size:20px;
+    padding: 8px 100px;
+    border: 3px solid #FFF;
+    border-radius: 3px;
+}
+/* 前往訂單頁按鈕的變化 */
+.go_order_section p a:hover,
+.go_order_section p a:focus,
+.go_order_section p a:active,
+.go_order_section p a:active:focus
+ {
+    color: #FFF;
+    text-decoration: none;
+}
