@@ -9,6 +9,7 @@ urlpatterns = patterns(
 	url(r'^web/', include('web.urls')),
 	# url(r'^accounts/', include('registration.backends.default.urls')),
 	url(r'^admin/', include(admin.site.urls)),
+	url(r'^backend/', include('backend.urls'))
 )
 
 if settings.DEBUG:
