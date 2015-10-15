@@ -18,10 +18,10 @@
 
   <body>
     {% if request.user.is_authenticated %}
+      <!--
       <p>{{request.user}} login!</p>
-            
-
-
+      <a href="{% url 'backend_logout' %}""> logout! </a> -->
+    
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -31,7 +31,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="{% url 'backend_index' %}">Funmove</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -39,10 +39,11 @@
               <li><a href="#">Settings</a></li>
               <li><a href="#">Profile</a></li>
               <li><a href="#">Help</a></li>
+              <li><a href="{% url 'backend_logout' %}">Logout</a><li>
             </ul>
-            <form class="navbar-form navbar-right">
+            <!-- <form class="navbar-form navbar-right">
               <input type="text" class="form-control" placeholder="Search...">
-            </form>
+            </form> -->
           </div>
         </div>
       </nav>
@@ -228,8 +229,12 @@
     </div>
 
     {% else %}
-      <p>you need to login!! <a href="backend/accounts/login/"> login! </a></p>
-    {% endif %}
+      <p>you need to login!! <a href="{% url 'backend_login' %}"> login! </a></p>
+
+    {% endif %}       
+
+
+    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster

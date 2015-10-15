@@ -51,6 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -69,7 +70,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'funmovedb',
         'USER': 'root',
-        'PASSWORD': 'ru8bjo4',
+        'PASSWORD': 'pass@word1',
         # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'HOST': '127.0.0.1',
         # Set to empty string for default.
