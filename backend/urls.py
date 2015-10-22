@@ -1,4 +1,8 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
+from django.conf.urls.static import static
+from django.conf import settings
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = patterns(
 	'',
@@ -6,5 +10,6 @@ urlpatterns = patterns(
 	url(r'^index/$', 'backend.views.index', name='backend_index'),
 	url(r'^accounts/login/$', 'backend.views.login', name='backend_login'),
 	url(r'^accounts/logout/$','backend.views.logout', name='backend_logout'), 
-	url(r'^accounts/register/$', 'backend.views.register', name='backend_reg'),
-)
+	url(r'^list/$', 'backend.views.list', name='backend_list'),
+
+)+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
