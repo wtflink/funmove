@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.contrib import auth  
 from django.http.response import HttpResponseRedirect
@@ -56,6 +57,7 @@ def register(request):
  
 def list(request):
 	# Handle file upload
+	# utf-8 file name not supported
 	if request.method == 'POST':
 		form = backendImageForm(request.POST, request.FILES)
 		if form.is_valid():
