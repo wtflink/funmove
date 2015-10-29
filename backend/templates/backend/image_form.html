@@ -1,5 +1,22 @@
 {% extends "backend/index.html" %}
 
+{% block active_nav_sidebar %} <!-- how to work better with block -->
+            <ul class="nav nav-sidebar">
+              <li><a href="{% url 'backend_index' %}">Overview</a></li>
+              <li><a href="#">Reports</a></li>
+              <li><a href="#">Analytics</a></li>
+              <li><a href="#">Export</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+              <li class="active"><a href="{% url 'backend_upload' %}">Upload<span class="sr-only">(current)</span></a></li>
+              <li><a href="">Delete Image</a></li>
+              <li><a href="">One more nav</a></li>
+              <li><a href="">Another nav item</a></li>
+              <li><a href="">More navigation</a></li>
+            </ul>
+{% endblock %}
+
+
 {% block content %}
 <!-- List of uploaded documents -->
 	{% if documents %}
@@ -13,7 +30,7 @@
 	{% else %}
 		<p>No documents.</p>
 	{% endif %}
-	<form action="{% url 'backend_list' %}" method="post" enctype="multipart/form-data">
+	<form action="{% url 'backend_upload' %}" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
 		<p>{{ form.non_field_errors }}</p>
 		<p>{{ form.image.label_tag }} </p>

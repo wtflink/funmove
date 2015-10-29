@@ -14,11 +14,11 @@ from models.image_model import backendImage
 
 # Create your views here.
 
-    
+@login_required
 def index(request):
 	return render(request,'backend/index.html',locals())
 
-
+@login_required
 def logout(request):
 	auth.logout(request)
 	return HttpResponseRedirect('/backend/index/')
@@ -54,8 +54,8 @@ def register(request):
 		form = UserCreationForm()
 	return render(request, 'backend/register.html',locals())
 
- 
-def list(request):
+@login_required 
+def upload(request):
 	# Handle file upload
 	# utf-8 file name not supported
 	if request.method == 'POST':
@@ -63,7 +63,7 @@ def list(request):
 		if form.is_valid():
 			newimg = backendImage(image = request.FILES['image'])
 			newimg.save()
-			return HttpResponseRedirect(reverse('backend_list'))
+			return HttpResponseRedirect(reverse('backend_upload'))
 	else:
 		form = backendImageForm() # A empty, unbound form
 	documents = backendImage.objects.all()

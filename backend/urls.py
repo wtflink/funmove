@@ -11,6 +11,7 @@ urlpatterns = patterns(
 	url(r'^index/$', 'backend.views.index', name='backend_index'),
 	url(r'^accounts/login/$', 'backend.views.login', name='backend_login'),
 	url(r'^accounts/logout/$','backend.views.logout', name='backend_logout'), 
-	url(r'^list/$', 'backend.views.list', name='backend_list'),
+	url(r'^accounts/register/$','backend.views.register', name = 'backend_reg'),
+	url(r'^upload/$', 'backend.views.upload', name='backend_upload'),
 
 )+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
