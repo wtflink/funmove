@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('image', models.FileField(upload_to=b'imguploadtest/')),
             ],
             options={
-                'db_table': 'Back_Img',
+                'db_table': 'backend_Img',
             },
             bases=(models.Model,),
         ),

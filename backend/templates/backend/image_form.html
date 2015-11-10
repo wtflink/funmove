@@ -22,7 +22,7 @@
 	{% if documents %}
 	<ul>  
 		{% for document in documents %}
-			<li><a href="{{ document.image.url }}">{{ document.image.name }}
+			<li><a href="{% url 'backend_imgDel' pk=document.id %}">{{ document.image.name }}
 				<img src="{{ document.image.url }}" alt="{{ document.image.name }}">
 			</a></li>
 		{% endfor %}

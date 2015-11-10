@@ -72,3 +72,15 @@ def upload(request):
 		{'documents': documents, 'form': form},
 		context_instance=RequestContext(request)
 	)
+
+@login_required
+def imgDel(request,pk):
+	img = backendImage.objects.get(pk=pk)
+	img.delete()
+	form = backendImageForm()
+	documents = backendImage.objects.all()
+	return render_to_response(
+		'backend/image_form.html',
+		{'documents': documents, 'form': form},
+		context_instance=RequestContext(request)
+	)

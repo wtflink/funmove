@@ -13,5 +13,6 @@ urlpatterns = patterns(
 	url(r'^accounts/logout/$','backend.views.logout', name='backend_logout'), 
 	url(r'^accounts/register/$','backend.views.register', name = 'backend_reg'),
 	url(r'^upload/$', 'backend.views.upload', name='backend_upload'),
+	url(r'^upload/delete/(?P<pk>\d+)/$', 'backend.views.imgDel', name='backend_imgDel'),
 
 )+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
