@@ -13,3 +13,4 @@ class backendImage(models.Model):
 		super(backendImage, self).delete(*args, **kwargs)
 		storage.delete(path)
 
+	

@@ -12,7 +12,6 @@ from django.contrib.auth.forms import UserCreationForm
 from forms.image_form import backendImageForm
 from models.image_model import backendImage
 
-# Create your views here.
 
 @login_required
 def index(request):
@@ -24,12 +23,6 @@ def logout(request):
 	return HttpResponseRedirect('/backend/index/')
 
 def login(request):
-
-	###{% if request.user.is_authenticated %} 
-	###{% else %}
-    ###  <p>you need to login!! <a href="{% url 'backend_login' %}"> login! </a></p>
-    ###{% endif %} 
-
 	if request.user.is_authenticated(): 
 		return HttpResponseRedirect('/backend/index/')
    
@@ -55,7 +48,7 @@ def register(request):
 	return render(request, 'backend/register.html',locals())
 
 @login_required 
-def upload(request):
+def imgUpload(request):
 	# Handle file upload
 	# utf-8 file name not supported
 	if request.method == 'POST':
@@ -63,24 +56,29 @@ def upload(request):
 		if form.is_valid():
 			newimg = backendImage(image = request.FILES['image'])
 			newimg.save()
-			return HttpResponseRedirect(reverse('backend_upload'))
+			return HttpResponseRedirect(reverse('backend_imgupload'))
 	else:
-		form = backendImageForm() # A empty, unbound form
+		form = backendImageForm() 
 	documents = backendImage.objects.all()
 	return render_to_response(
 		'backend/image_form.html',
 		{'documents': documents, 'form': form},
-		context_instance=RequestContext(request)
-	)
+		context_instance=RequestContext(request))
+
+@login_required
+def imgShow(request):
+	documents = backendImage.objects.all()
+	return render_to_response(
+		'backend/image_del.html',
+		{'documents': documents},
+		context_instance=RequestContext(request))
 
 @login_required
 def imgDel(request,pk):
 	img = backendImage.objects.get(pk=pk)
 	img.delete()
-	form = backendImageForm()
 	documents = backendImage.objects.all()
 	return render_to_response(
-		'backend/image_form.html',
-		{'documents': documents, 'form': form},
-		context_instance=RequestContext(request)
-	)
+		'backend/image_del.html',
+		{'documents': documents},
+		context_instance=RequestContext(request))
