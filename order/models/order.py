@@ -11,8 +11,13 @@ class Orders(models.Model):
     id = models.AutoField(primary_key=True)
     # 搬運日期
     reservation_date = models.DateField(null=False, blank=False)
-    # 搬運時間
+    # 搬運時間(time that start the service)
     reservation_time = models.TimeField(null=False, blank=False)
+    #服務時間(store an int which indicate the length of the service)
+    MIN_CHOICES=((0,0), (30,30))
+    HR_CHOICES = [(i,i) for i in range(7)]
+    time_needed_hr = models.IntegerField(choices=HR_CHOICES, default = 0,null = False, blank = False)
+    time_needed_min= models.IntegerField(choices=MIN_CHOICES, default = 0,null = False, blank = False)
     # 搬運地點
     departure = models.CharField(max_length=255)
     # 目的地點
