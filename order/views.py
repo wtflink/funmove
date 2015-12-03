@@ -6,20 +6,21 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.core.context_processors import csrf
 
-from order.forms.order_form import WhenForm
+from order.forms.order_form import OrderForm
 from order.models.order import Orders
 
 
 
 def order_index(request):
-	return render(request,'order/when.html',locals())
+	return HttpResponseRedirect('/order/when/')
 
-def order_When(request):
+def order(request):
 	if request.method == 'POST':
-		form = WhenForm(request.POST)
+		form = OrderForm(request.POST)
 		if form.is_valid():
 			order = form.save()
 			return HttpResponseRedirect('/order/when/')
 	else:
-		form = WhenForm()
+		form = OrderForm()
 	return render(request, 'order/when.html',locals())
+
