@@ -24,9 +24,9 @@
       <form class="form-signin" method="POST" action="{% url 'backend_login' %}"  >
       {% csrf_token %}
         <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="username" class="sr-only">username:</label>
-        <input type="text" name="username" class="form-control" placeholder="text" value="" id="username" required autofocus> <br />
-        <label for="password">password:</label>
+        <label for="username">Username:</label>
+        <input type="text" name="username" class="form-control" placeholder="username" value="" id="username" required autofocus> <br />
+        <label for="password">Password:</label>
         <input type="password" name="password" value="" id="password" class="form-control" placeholder="Password" required> <br />
         <button class="btn  btn-primary " type="submit">Sign in</button>
 

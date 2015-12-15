@@ -32,8 +32,8 @@ def order(request):
 			#mailling test
 			send_mail('ur time order', 'test', 'wtflink515@gmail.com', ['wtflink515@gmail.com'], fail_silently=False)
 
-			return HttpResponseRedirect('/order/when/')
+			return HttpResponseRedirect('/order/when')
 	else:
 		form = OrderForm()
-	return render(request, 'order/when.html',locals())
+	return render(request, 'order/order.html',locals())
 

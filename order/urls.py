@@ -9,5 +9,4 @@ urlpatterns = patterns(
 	url(r'^index/$', 'order.views.order_index', name='order_index'),
 	url(r'^when/$', 'order.views.order', name='order_when'),
 
-
 )+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
