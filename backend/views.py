@@ -11,6 +11,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from forms.image_form import backendImageForm
 from models.image_model import backendImage
+from order.models.order import Orders
 
 
 @login_required
@@ -82,3 +83,11 @@ def imgDel(request,pk):
 		'backend/image_del.html',
 		{'documents': documents},
 		context_instance=RequestContext(request))
+
+@login_required
+def order(request):
+	orders = Orders.objects.all()
+	return render_to_response(
+		'backend/order.html',
+		{'orders' : orders},
+		context_instance = RequestContext(request))

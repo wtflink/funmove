@@ -14,7 +14,7 @@ class Orders(models.Model):
     # TODO : Order 由於django尚不支援 BigInt Auto_increment，所以後續要處理
     id = models.AutoField(primary_key=True)
     # 搬運日期
-    reservation_date = models.DateField(default = datetime.now(), null=False, blank=False)
+    reservation_date = models.DateField(default = datetime.now, null=False, blank=False)
     # 搬運時間(time that start the service) /?choices needed?/
     reservation_time = models.TimeField(default = '12:00',null=False, blank=False)
     

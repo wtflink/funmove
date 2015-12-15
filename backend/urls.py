@@ -15,5 +15,6 @@ urlpatterns = patterns(
 	url(r'^upload/$', 'backend.views.imgUpload', name='backend_imgupload'),
 	url(r'^upload/delete/$', 'backend.views.imgShow', name='backend_show'),
 	url(r'^upload/delete/(?P<pk>\d+)/$', 'backend.views.imgDel', name='backend_imgdel'),
+	url(r'^order/', 'backend.views.order', name='backend_order'),
 
 )+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
