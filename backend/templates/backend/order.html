@@ -1,0 +1,60 @@
+{% extends "backend/index.html" %}
+
+{% block active_nav_sidebar %} <!-- how to work better with block -->
+            <ul class="nav nav-sidebar">
+              <li><a href="{% url 'backend_index' %}">Overview</a></li>
+              <li><a href="#">Reports</a></li>
+              <li><a href="#">Analytics</a></li>
+              <li><a href="#">Export</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+              <li><a href="{% url 'backend_imgupload' %}">Upload</a></li>
+              <li><a href="{% url 'backend_show' %}">Delete Image</a></li>
+              <li class="active"><a href="{% url 'backend_order' %}">Order<span class="sr-only">(current)</span></a></li>
+              <li><a href="">Another nav item</a></li>
+              <li><a href="">More navigation</a></li>
+            </ul>
+{% endblock %}
+
+
+{% block content %}
+<!-- List of orders -->
+	<h2 class="sub-header">Section title</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>date</th>
+                  <th>time</th>
+                  <th>time_needed</th>
+                  <th>name</th>
+                  <th>cellphone</th>
+                  <th>email</th>
+                  <th>birthday</th>
+                </tr>
+              </thead>
+              <tbody>
+
+	{% if orders %}
+		{% for order in orders %}
+                <tr>
+                  <td> {{ order.id }} </td>
+                  <td> {{ order.reservation_date|date:'Y-m-d' }} </td>
+                  <td> {{ order.reservation_time|time:'H:i' }} </td>
+                  <td> {{ order.time_needed_hr }}:{{ order.time_needed_min }} </td>
+                  <td> {{ order.name }} </td>
+                  <td> {{ order.cell_phone }} </td>
+                  <td> {{ order.email }} </td>
+                  <td> {{ order.birth_year}}/{{ order.birth_month }}/{{ order.birth_day}}</td>
+                </tr>
+		{% endfor %}
+			 
+	{% else %}
+				<tr><td>No orders.</td></tr>
+	{% endif %}
+		 	  </tbody>
+            </table>
+        </div>
+	
+{% endblock %}
