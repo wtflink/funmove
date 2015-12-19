@@ -9,6 +9,7 @@
 
             <form action="" method="POST">{% csrf_token %}
                 <p>{{ form.non_field_errors }}</p>
+                <p>{{ form.errors}}</p>
                 {{ form.as_p }}
 
                 <input type="submit" value="next">

@@ -1,0 +1,14 @@
+Hello {{ order.name }} - this is ur oreder
+
+
+order id: {{ order.id }}
+the reservation date: {{ order.reservation_date|date:'Y-m-d' }}
+the reservation time: {{ order.reservation_time|time:'H:i' }}
+the time u needed: {{ order.time_needed_hr }}hr{{ order.time_needed_min }}min
+ur cellphoen: {{ order.cell_phone }}
+ur email: {{ order.email }}
+ur birthday: {{ order.birth_year}}/{{ order.birth_month }}/{{ order.birth_day}}
+
+thank for ordering!!
+
+by funmove
