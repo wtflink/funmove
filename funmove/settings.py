@@ -73,7 +73,6 @@ DATABASES = {
         'PASSWORD': 'pass@word1',
         # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'HOST': '127.0.0.1',
-
         # Set to empty string for default.
         'PORT': '3306',
     }

@@ -11,19 +11,20 @@ from django.core.validators import MinLengthValidator
 
 # 訂單
 class Orders(models.Model):
+    MIN_CHOICES= ((0,0), (30,30))
+    HR_CHOICES = [(i,i) for i in range(7)]
+    year_choices=[(i, i) for i in range(1910, int(datetime.now().year) + 1)]
+    mon_choices=[(i, i) for i in range(1, 13)]
+    day_choices=[(i, i) for i in range(1, 32)]
     # TODO : Order 由於django尚不支援 BigInt Auto_increment，所以後續要處理
     id = models.AutoField(primary_key=True)
     # 搬運日期
     reservation_date = models.DateField(default = datetime.now, null=False, blank=False)
     # 搬運時間(time that start the service) /?choices needed?/
     reservation_time = models.TimeField(default = '12:00',null=False, blank=False)
-    
     #服務時間(store an int which indicate the length of the service)
-    MIN_CHOICES= ((0,0), (30,30))
-    HR_CHOICES = [(i,i) for i in range(7)]
     time_needed_hr = models.IntegerField(choices = HR_CHOICES, default = 0,null = False, blank = False)
     time_needed_min= models.IntegerField(choices = MIN_CHOICES, default = 0,null = False, blank = False)
-    
     # 搬運地點
     departure = models.CharField(max_length=255)
     # 目的地點
@@ -33,28 +34,25 @@ class Orders(models.Model):
 
     name = models.CharField(max_length=45, default = None, null=False, blank=False)
     email = models.EmailField(default = None,null=False, blank=False)
-    cell_phone = models.CharField(validators=[MinLengthValidator(11)], max_length=11, null=False, blank=False, default =None,)
-   
+    cell_phone = models.CharField(validators=[MinLengthValidator(10)], max_length=11, null=False, blank=False, default =None,)
     # 出生日
-    year_choices=[(i, i) for i in range(1910, int(datetime.now().year) + 1)]
     birth_year = models.IntegerField(
         max_length=4,
         default=None, blank=False, null=True, choices = year_choices,)
-        # TODO : UserInfo 出生年選項，要在ModelForm定義
-
-    mon_choices=[(i, i) for i in range(1, 13)]
     birth_month = models.IntegerField(
         max_length=2,
         default=None, blank=False, null=True, choices = mon_choices,)
-        # TODO : UserInfo 出生月選項，要在ModelForm定義
-  
-    day_choices=[(i, i) for i in range(1, 32)]    
     birth_day = models.IntegerField(
         max_length=2,
         default=None, blank=False, null=True, choices = day_choices,)
-        # TODO : UserInfo 出生日選項，要在ModelForm定義
 
-    
+    create_date = models.DateTimeField(auto_now_add=True, auto_now=False)
+    update_date = models.DateTimeField(auto_now_add=False, auto_now=True)
+    delete_date = models.DateTimeField(blank=True, null=True)    
+
+    confirmation_key = models.CharField(max_length=40, blank=True)
+    key_expires = models.DateTimeField(default=datetime.now)
+    is_confirmed = models.BooleanField(default = False)
 
 
     # 司機外鍵

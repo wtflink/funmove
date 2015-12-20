@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>放心搬，解決你在外搬宿的困擾</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+</head>
+<body>
+<p>親愛的 {{ order.name }} 您好,</p>
+
+<p>您的訂單資料如下已完成確認：</p>
+<p>姓名： {{ order.name }}</p>
+<p>電話： {{ order.cell_phone }}</p>
+<p>生日： {{ order.birth_year}}/{{ order.birth_month }}/{{ order.birth_day}}</p>
+<p>起始地： {{ order.departure }}</p>
+<p>目的地： {{ order.destination}}</p>
+<p>預約時間： {{ order.reservation_date|date:'Y-m-d' }} {{ order.reservation_time|time:'H:i' }}</p>
+<p>預計多久： {{ order.time_needed_hr }}小時{{ order.time_needed_min }}分鐘</p>
+</body>
+</html>

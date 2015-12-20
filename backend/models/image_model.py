@@ -12,5 +12,3 @@ class backendImage(models.Model):
 		storage, path = self.image.storage, self.image.path
 		super(backendImage, self).delete(*args, **kwargs)
 		storage.delete(path)
-
-	

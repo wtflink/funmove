@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
-from django.contrib import auth  
+from django.shortcuts import render, render_to_response
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
-from django.template import RequestContext
 from django.core.context_processors import csrf
+from django.contrib import auth  
 from django.contrib.auth.decorators import login_required # @login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.template import RequestContext
+
 
 from forms.image_form import backendImageForm
 from models.image_model import backendImage

@@ -1,14 +1,20 @@
-Hello {{ order.name }} - this is ur oreder
+親愛的 {{ order.name }} 您好,
 
+歡迎您使用『放心搬』，我們已經收到您登錄的資料：
+姓名： {{ order.name }}
+電話： {{ order.cell_phone }}
+生日： {{ order.birth_year}}/{{ order.birth_month }}/{{ order.birth_day}}
+起始地： {{ order.departure }}
+目的地： {{ order.destination}}
+預約時間： {{ order.reservation_date|date:'Y-m-d' }} {{ order.reservation_time|time:'H:i' }}
+預計多久： {{ order.time_needed_hr }}小時{{ order.time_needed_min }}分鐘
 
-order id: {{ order.id }}
-the reservation date: {{ order.reservation_date|date:'Y-m-d' }}
-the reservation time: {{ order.reservation_time|time:'H:i' }}
-the time u needed: {{ order.time_needed_hr }}hr{{ order.time_needed_min }}min
-ur cellphoen: {{ order.cell_phone }}
-ur email: {{ order.email }}
-ur birthday: {{ order.birth_year}}/{{ order.birth_month }}/{{ order.birth_day}}
+請在兩日之內點選下列網址，進行資料確認。
+若您無法點選連結，請複製以下網址貼到您的瀏覽器即可。
+http://127.0.0.1:8000/order/confirm/{{ order.confirmation_key }}
 
-thank for ordering!!
+確認後，您即可開始準備要搬運的物品。
+放心地，搬運您的物品！
+如有任何問題，請來函service@fuflow.com，我們會儘速為您處理您的問題。
 
-by funmove
+放心搬 敬上

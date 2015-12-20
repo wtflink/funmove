@@ -25,9 +25,12 @@
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>confirmed</th>
                   <th>date</th>
                   <th>time</th>
-                  <th>time_needed</th>
+                  <th>needed</th>
+                  <th>departure</th>
+                  <th>destination </th>
                   <th>name</th>
                   <th>cellphone</th>
                   <th>email</th>
@@ -40,9 +43,12 @@
 		{% for order in orders %}
                 <tr>
                   <td> {{ order.id }} </td>
+                  <td> {{ order.is_confirmed}} </td>
                   <td> {{ order.reservation_date|date:'Y-m-d' }} </td>
                   <td> {{ order.reservation_time|time:'H:i' }} </td>
                   <td> {{ order.time_needed_hr }}:{{ order.time_needed_min }} </td>
+                  <td> {{ order.departure }}</td>
+                  <td> {{ order.destination }}</td>
                   <td> {{ order.name }} </td>
                   <td> {{ order.cell_phone }} </td>
                   <td> {{ order.email }} </td>
