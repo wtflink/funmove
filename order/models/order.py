@@ -46,6 +46,8 @@ class Orders(models.Model):
         max_length=2,
         default=None, blank=False, null=True, choices = day_choices,)
 
+    remarks = models.TextField(max_length=200, default = None)
+
     create_date = models.DateTimeField(auto_now_add=True, auto_now=False)
     update_date = models.DateTimeField(auto_now_add=False, auto_now=True)
     delete_date = models.DateTimeField(blank=True, null=True)    

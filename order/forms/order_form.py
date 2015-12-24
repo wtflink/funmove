@@ -9,4 +9,4 @@ class OrderForm(forms.ModelForm):
 		fields = ['reservation_date', 'reservation_time',
 		 'time_needed_hr', 'time_needed_min',
 		 'departure', 'destination',
-		 'name', 'email', 'cell_phone', 'birth_year', 'birth_month', 'birth_day']
+		 'name', 'email', 'cell_phone', 'birth_year', 'birth_month', 'birth_day', 'remarks']
