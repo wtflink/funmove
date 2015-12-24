@@ -223,16 +223,13 @@ function initialize2(pFrom,pEnd) {
 									{{ form.reservation_time }}<br>
 
 									<div id="hint"></div>
+									{{ form.time_needed_hr.errors }}
+									<label for="id_time_needed_hr">使用服務時間_Hr:</label>
+									{{form.time_needed_hr}}
+
 									{{ form.time_needed_min.errors }}
 									<label for="id_time_needed_min">使用服務時間(單位:半小時):</label>
-									<select id="id_time_needed_min" name="time_needed_min" onchange="calPrice()">
-										<option value="1" selected="selected">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6+</option>
-									</select>
+									{{form.time_needed_min}}
 									<div id="dollar">所需費用: 300元</div>
 								</div>
 							</div>
@@ -283,7 +280,7 @@ function initialize2(pFrom,pEnd) {
 									{{ form.birth_month }}
 									{{ form.birth_day.errors }}
 									{{ form.birth_day }}
-
+									{{ form.remarks}}
 								</div>
 							</div>
 							<div class="col-md-4"></div>
