@@ -1,0 +1,112 @@
+body {
+	background-color: #ffffff;
+	text-align: center;
+}
+
+body:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.decorateForm {
+	background-color: #ffffff;
+	border-radius: 10px;
+}
+
+#map-canvas {
+	position:relative; 
+	top: -50px;
+	left:-100px; 
+	width:150%;
+	height:133%;	
+}
+
+#map .row .decorateForm {
+	background-color: #000000;
+	position: absolute;
+	width:30%;
+	margin-top:-50%;
+	margin-left:8%;
+	padding:3% 5%;
+	opacity: 0.8;
+
+}
+
+
+#main .row .decorateForm {
+	position:relative;
+	left:0;
+	height: 50%;
+	width:60%;
+	padding:6% 8%;
+	margin-left:20%;
+	margin-bottom:8%;
+	margin-top:13%;
+
+
+}
+
+#user .row .decorateForm {
+	position:relative;
+	height: 60%;
+	width:80%;
+	padding:10%;
+	margin-top:13%;
+	margin-left:15%;
+	margin-bottom:6%;
+}
+
+#user {
+	background-color: #ffab8a;
+	bottom: -100px;
+    margin: 0 -12.5%;
+}
+
+#calendar {
+	float:right;
+	width:100%;
+	height:60%;
+	overflow-y:hidden;
+	margin-bottom:8%;
+	margin-top:3%;
+}
+
+.userData {
+	font-size: 12pt;
+	line-height: 35px;
+	background-color: #ffffff;
+	position:relative;
+	height: 52%;
+	width:80%;
+	margin-left:10%;
+	margin-bottom:5%;
+	padding:4% 5%;
+	border-radius: 10px;
+
+}
+
+.col-centered{
+  display: inline-block;
+  vertical-align: middle;    
+}
+
+.btnDirection {
+	width:140px;
+}
+
+#price {
+	font-size: 16pt;
+	font-weight: bolder;
+}
+
+#hint {
+
+	color: #bbbde8;
+	font-size: 10pt;
+	font-weight: bolder;
+}
+
+label , #dollar{
+	font-size: 11pt;
+}
