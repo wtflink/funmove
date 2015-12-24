@@ -1,19 +1,368 @@
 {% load staticfiles %}
+
+
 <html>
 <head>
-    <title>放心搬，解決你在外搬宿的困擾</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>放心搬，解決你在外搬宿的困擾</title>
+	<meta charset='utf-8' name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="{% static "css/base.css" %}">
+	<link rel="stylesheet" href="{% static "css/jquery-ui-timepicker-addon.css" %}">
+	<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-theme.css" %}">
+	<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}">
+	<link rel="stylesheet" href="{% static "sidr/css/jquery.sidr.dark.css" %}">
+	<link rel="stylesheet" href="{% static "css/home.css" %}">
+	<link rel="stylesheet" href="{% static "css/order.css" %}">
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/hot-sneaks/jquery-ui.css" rel="stylesheet">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="{% static "js/jquery-ui-timepicker-addon.js" %}"></script>	
+	<link href="{% static "fullcalendar/fullcalendar.css" %}" rel='stylesheet' />
+	<link href="{% static "fullcalendar/fullcalendar.print.css" %}" rel='stylesheet' media='print' />
+	<script src="{% static "fullcalendar/lib/moment.min.js" %}"></script>
+	<script src="{% static "fullcalendar/fullcalendar.min.js" %}"></script>
+	<script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+	<script src="{% static "sidr/js/jquery.sidr.min.js" %}"></script>	
+	<script src="{% static "js/base.js" %}"></script> 
+	<script src="{% static "js/home.js" %}"></script>	
+	<script src="{% static "js/order.js" %}"></script>	
 
+	<style>
+		article,aside,figure,figcaption,footer,header,hgroup,menu,nav,section {display:block;}
+		body {
+			font: 62.5% "微軟正黑體";
+			margin-top: 10px;
+			padding: 0;
+			overflow:hidden;
+		}		
+
+	</style>
+	
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxwkpuZ751y6h6JL8cVM1c9VdAnWhnEa0"></script>
+	
+<script type="text/javascript">
+  var directionsDisplay;
+  var directionsService = new google.maps.DirectionsService();
+  var map;
+  var oldDirections = [];
+  var currentDirections = null; 
+  var start;
+  var end;
+
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(22.992, 120.222) ,
+          zoom: 14,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(
+            document.getElementById('map-canvas'),
+            mapOptions);
+
+		directionsDisplay = new google.maps.DirectionsRenderer({
+	        'map': map,
+	        'preserveViewport': true,
+	        'draggable': true
+	    });
+
+	    google.maps.event.addListener(directionsDisplay, 'directions_changed',
+	      function() {
+	        if (currentDirections) {
+	          oldDirections.push(currentDirections);
+	        }
+	        currentDirections = directionsDisplay.getDirections();
+	        computeTotalDistance(currentDirections);
+	      });
+
+	    calcRoute();
+      }
+
+  function calcRoute() {
+    start = '台南市東區大學路1號';
+    end = '台南市東區北門路';
+    var request = {
+        origin:start,
+        destination:end,
+        travelMode: google.maps.DirectionsTravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+      }
+    });
+  }
+
+function computeTotalDistance(result) {
+  var total = 0;
+  var myroute = result.routes[0];
+  var driveTime = myroute.legs[0].duration.value/60;
+  var wholeTime = (driveTime + 15)/30 - 0.8;
+  var willTime = Math.ceil(wholeTime) + 1 ;
+  var dollar = 0;
+  for (var i = 0; i < myroute.legs.length; i++) {
+    total += myroute.legs[i].distance.value;
+  }
+  total = total / 1000;
+  document.getElementById("id_departure").value = myroute.legs[0].start_address;
+  document.getElementById("id_destination").value = myroute.legs[0].end_address;
+  document.getElementById('total').innerHTML = "行程距離: " + total + ' km';
+  document.getElementById('time').innerHTML = "預估行程時間: " + myroute.legs[0].duration.text ;
+  document.getElementById('hint').innerHTML = "行程距離: " + total + ' km / 預估行程時間: ' + myroute.legs[0].duration.text + " / 推薦使用時間: " + willTime + "個半小時" ;
+}
+
+function initialize2(pFrom,pEnd) {
+	var request = {
+        origin:pFrom,
+        destination:pEnd,
+        travelMode: google.maps.DirectionsTravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+        currentDirections = directionsDisplay.getDirections();
+	    computeTotalDistance(currentDirections);
+      }
+    });
+}	
+
+</script>
+
+			
 </head>
-<body>
+<body onload="initialize()" onDRAGSTART="window.event.returnValue=false" onCONTEXTMENU="window.event.returnValue=false" onSelectStart="event.returnValue=false">
+	<header>
+			<div id="mobile-header">
+
+			    <a id="responsive-menu-button" href="#sidr-main">
+			    	<img src="{% static "images/menu-icon.png" %}"/>
+			    </a>
+			</div>
+			<div id="navigation">
+				    <nav class="navbar navbar-fixed-top navbar-background">
+				    	<div class="navbar-collapse collapse">
+				    		<ul class="nav navbar-nav navbar-left">
+				    		<li>
+				    			<!--
+				    			<a href="#download">
+				    				<img src="/static/images/menu-icon.png" />
+				    			</a>
+				    			-->
+				    		</li>
+				    		</ul>
+				    		<ul class="nav navbar-nav navbar-right">
+					            <li><a href="../when">我要放心搬</a></li>
+					            <li><a href="#usage">訂單查詢</a></li>
+					            <li><a href="#documentation">與我們聯絡</a></li>
+					            
+				        	</ul>
+				    	</div>
+				    </nav>
+    		</div>
+
+	</header>	
+	<div id="navigation_bottom"></div>
+	<article>
+	<div id="form_page">
+	<div class="container">
 
             <form action="" method="POST">{% csrf_token %}
                 <p>{{ form.non_field_errors }}</p>
-                <p>{{ form.errors}}</p>
-                {{ form.as_p }}
+				<div class="">
+					<!---- Map Data---->
+					<section id="map">
+						<div class="row">
+							<div id="map-canvas"></div>
+							<div class="decorateForm">
+								{{ form.departure.errors }}
+								<label for="id_departure">出發地:</label>
+								{{ form.departure }}<br>
 
-                <input type="submit" value="next">
+								{{ form.destination.errors }}
+								<label for="id_destination">目的地:</label>
+								{{ form.destination }}
+									
+								<br>
+								<div class="row">
+									<div class="col-md-3 "></div>
+									<div class="col-md-6 ">
+										<input onclick="initialize2(id_departure.value,id_destination.value)" class="btn btn-info btn-sm" type="button" value="瀏覽自訂地標">
+									</div>
+									<div class="col-md-3 "></div>
+								</div>
+								<div id="total"></div>
+								<div id="time"></div>
+								<div class="row">
+									<div class="col-md-3 "></div>
+									<div class="col-md-6 ">
+										<input class="btn btn-primary btn1" type="button" value="NEXT">
+									</div>
+									<div class="col-md-3 "></div>
+								</div>
+							</div>
+							<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+						</div>	
+					</section>
+
+					<!---- Main Data---->
+					<section id="main"><br><br><br><br><br><br>
+						<div class="row">
+							<div class="col-md-4 col-xs-4"></div>			
+							<div class="col-md-4 col-xs-4">	
+								<div class="col-centered"><button class="btn btn-primary btn3 btnDirection" type="button">PREV</button></div>	
+							</div>	
+							<div class="col-md-4 col-xs-4"></div>					
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="decorateForm">
+									{{ form.reservation_date.errors }}
+									<label for="id_reservation_date">搬家日期:</label>
+									{{ form.reservation_date }}<br>
+
+									{{ form.reservation_time.errors }}
+									<label for="id_reservation_time">搬家時間:</label>
+									{{ form.reservation_time }}<br>
+
+									<div id="hint"></div>
+									{{ form.time_needed_min.errors }}
+									<label for="id_time_needed_min">使用服務時間(單位:半小時):</label>
+									<select id="id_time_needed_min" name="time_needed_min" onchange="calPrice()">
+										<option value="1" selected="selected">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6+</option>
+									</select>
+									<div id="dollar">所需費用: 300元</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div id='calendar'></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 col-xs-4"></div>
+							<div class="col-md-4 col-xs-4">
+								<div class="col-centered"><button class="btn btn-primary btn2 btnDirection" type="button">NEXT</button></div>
+							</div>
+							<div class="col-md-4 col-xs-4"></div>
+						</div>
+						<br><br><br><br><br>
+						<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+					</section>
+
+					<!---- User Data---->
+					<section id="user"><br><br><br><br><br><br>
+						<div class="row">
+							<div class="col-md-4 col-xs-4"></div>
+							<div class="col-md-4 col-xs-4 col-centered">
+								<button class="btn btn-primary btn1 btnDirection" type="button">PREV</button>
+							</div>
+							<div class="col-md-4 col-xs-4"></div>
+						</div>
+						<div class="row">
+							<div class="col-md-4"></div>
+							<div class="col-md-4">
+								<div class="decorateForm">
+									{{ form.name.errors }}
+									<label for="id_name">姓名:</label>
+									{{ form.name }}<div id="vali_name"></div><br>
+
+									{{ form.email.errors }}
+									<label for="id_email">Email:</label>
+									{{ form.email }}<div id="vali_email"></div><br>
+
+									{{ form.cell_phone.errors }}
+									<label for="id_cell_phone">手機號碼:</label>
+									{{ form.cell_phone }}<div id="vali_phone"></div><br>
+
+									{{ form.birth_year.errors }}
+									<label for="id_birth_year">生日:</label>
+									{{ form.birth_year }}
+									{{ form.birth_month.errors }}
+									{{ form.birth_month }}
+									{{ form.birth_day.errors }}
+									{{ form.birth_day }}
+
+								</div>
+							</div>
+							<div class="col-md-4"></div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 col-xs-4"></div>
+							<div class="col-md-4 col-xs-4">
+								<div class="col-centered"><button onclick="cacheData()" class="btn btn-primary btn4 btnDirection" type="button">NEXT</button></div>
+							</div>
+							<div class="col-md-4 col-xs-4"></div>
+						</div>
+						<div class="row">
+							<p><br><br></p>
+						</div>
+				    </div>
+
+				    </section>
+
+				    <!---- 確認資料---->
+				    <section id="verify"><br><br><br>
+				    	<div class="row feature_title">
+							<h1>確認資料</h1>
+						</div>
+				    	<div class="row">
+				    		<div class="content_margin feature_content">
+				    			<div class="row">	
+									<div class="userData">
+										<div class="row">
+											<div class="col-md-6">
+												<div id="departure"></div>
+												<div id="destination"></div>
+												<div id="reservation_date"></div>
+												<div id="reservation_time"></div>
+												<div id="time_needed_min"></div>
+											</div>
+											<div class="col-md-6">
+												<div id="user_name"></div>
+												<div id="user_email"></div>
+												<div id="user_cellphone"></div>
+												<div id="user_birth"></div>
+											</div>
+										</div>	
+										<div class="row">	
+											<br>
+											<div id="price" style="float:right;"></div>
+										</div>	
+									</div>	
+								</div>		
+								<div class="row">	    			
+		                			<div class="col-md-4"></div>
+			                		<div class="col-md-4">
+			                			<div class="row">
+			                				<div class="col-md-6">
+				                				<button class="btn btn-warning btn3" type="button">修改資料</button>
+				                			</div>
+				                			<div class="col-md-6">
+				                				<button class="btn btn-success " type="submit">確認送出</button>
+				                			</div>
+			                			</div>
+			                		</div>
+			                		<div class="col-md-4"></div>	
+								</div>
+							</div>	
+	                	</div>
+					</section>
+
             </form>
+            
+            
+	</div>	
+
+	
+	</div>
+	</article>
+	<footer class="footer_section">
+		<div class="row">
+			
+		</div>
+	</footer>	
 </body>
 
 </html>
