@@ -85,3 +85,4 @@ function cacheData(){
 	document.getElementById("price").innerHTML = document.getElementById("dollar").innerHTML ;
 }
 
+
