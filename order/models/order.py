@@ -52,7 +52,7 @@ class Orders(models.Model):
     update_date = models.DateTimeField(auto_now_add=False, auto_now=True)
     delete_date = models.DateTimeField(blank=True, null=True)    
 
-    confirmation_key = models.CharField(max_length=40, blank=True)
+    confirmation_key = models.CharField(max_length=40, default = None, blank=True)
     key_expires = models.DateTimeField(default=datetime.now)
     is_confirmed = models.BooleanField(default = False)
 

@@ -24,9 +24,8 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>confirmed</th>
                   <th>date</th>
+                  <th>confirmed</th>
                   <th>time</th>
                   <th>needed</th>
                   <th>departure</th>
@@ -35,6 +34,7 @@
                   <th>cellphone</th>
                   <th>email</th>
                   <th>birthday</th>
+                  <th>remarks</th>
                 </tr>
               </thead>
               <tbody>
@@ -42,9 +42,8 @@
 	{% if orders %}
 		{% for order in orders %}
                 <tr>
-                  <td> {{ order.id }} </td>
-                  <td> {{ order.is_confirmed}} </td>
                   <td> {{ order.reservation_date|date:'Y-m-d' }} </td>
+                  <td> {{ order.is_confirmed}} </td>
                   <td> {{ order.reservation_time|time:'H:i' }} </td>
                   <td> {{ order.time_needed_hr }}:{{ order.time_needed_min }} </td>
                   <td> {{ order.departure }}</td>
@@ -53,6 +52,7 @@
                   <td> {{ order.cell_phone }} </td>
                   <td> {{ order.email }} </td>
                   <td> {{ order.birth_year}}/{{ order.birth_month }}/{{ order.birth_day}}</td>
+                  <td> {{ order.remarks }} </td>
                 </tr>
 		{% endfor %}
 			 
