@@ -49,6 +49,7 @@
   var end;
 
       function initialize() {
+      	document.getElementById("screensize").innerHTML = document.body.clientWidth + "x" + document.body.clientHeight;
         var mapOptions = {
           center: new google.maps.LatLng(22.992, 120.222) ,
           zoom: 14,
@@ -149,6 +150,7 @@ function initialize2(pFrom,pEnd) {
 				    		</li>
 				    		</ul>
 				    		<ul class="nav navbar-nav navbar-right">
+				    			<li><div id="screensize"></div></li>
 					            <li><a href="../when">我要放心搬</a></li>
 					            <li><a href="#usage">訂單查詢</a></li>
 					            <li><a href="#documentation">與我們聯絡</a></li>
@@ -212,7 +214,7 @@ function initialize2(pFrom,pEnd) {
 							<div class="col-md-4 col-xs-4"></div>					
 						</div>
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-6 col-xs-6 col-sm-6">
 								<div class="decorateForm">
 									{{ form.reservation_date.errors }}
 									<label for="id_reservation_date">搬家日期:</label>
@@ -223,17 +225,19 @@ function initialize2(pFrom,pEnd) {
 									{{ form.reservation_time }}<br>
 
 									<div id="hint"></div>
+
 									{{ form.time_needed_hr.errors }}
-									<label for="id_time_needed_hr">使用服務時間_Hr:</label>
+									<label for="id_time_needed_hr">使用服務時間(小時):</label>
 									{{form.time_needed_hr}}
 
 									{{ form.time_needed_min.errors }}
-									<label for="id_time_needed_min">使用服務時間(單位:半小時):</label>
+									<label for="id_time_needed_min">使用服務時間(分鐘):</label>
 									{{form.time_needed_min}}
+
 									<div id="dollar">所需費用: 300元</div>
 								</div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-6 col-xs-6 col-sm-6">
 								<div id='calendar'></div>
 							</div>
 						</div>
@@ -258,9 +262,9 @@ function initialize2(pFrom,pEnd) {
 							<div class="col-md-4 col-xs-4"></div>
 						</div>
 						<div class="row">
-							<div class="col-md-4"></div>
-							<div class="col-md-4">
-								<div class="decorateForm">
+							<div class="decorateForm">
+							<div class="col-md-6 col-xs-6 col-sm-6">
+								
 									{{ form.name.errors }}
 									<label for="id_name">姓名:</label>
 									{{ form.name }}<div id="vali_name"></div><br>
@@ -275,16 +279,20 @@ function initialize2(pFrom,pEnd) {
 
 									{{ form.birth_year.errors }}
 									<label for="id_birth_year">生日:</label>
-									{{ form.birth_year }}
+									<p>西元 {{ form.birth_year }}年
 									{{ form.birth_month.errors }}
-									{{ form.birth_month }}
+									{{ form.birth_month }}月
 									{{ form.birth_day.errors }}
-									{{ form.birth_day }}
-									{{ form.remarks.errors }}
-									{{ form.remarks}}
-								</div>
+									{{ form.birth_day }}日</p>
+									
+
+								
 							</div>
-							<div class="col-md-4"></div>
+							<div class="col-md-6 col-xs-6 col-sm-6">
+								<label for="id_remarks">備註:</label><br>
+								{{ form.remarks}}
+							</div>
+							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-4 col-xs-4"></div>
@@ -310,14 +318,14 @@ function initialize2(pFrom,pEnd) {
 				    			<div class="row">	
 									<div class="userData">
 										<div class="row">
-											<div class="col-md-6">
+											<div class="col-md-6 col-xs-6 col-sm-6">
 												<div id="departure"></div>
 												<div id="destination"></div>
 												<div id="reservation_date"></div>
 												<div id="reservation_time"></div>
 												<div id="time_needed_min"></div>
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-6 col-xs-6 col-sm-6">
 												<div id="user_name"></div>
 												<div id="user_email"></div>
 												<div id="user_cellphone"></div>
@@ -334,10 +342,10 @@ function initialize2(pFrom,pEnd) {
 		                			<div class="col-md-4"></div>
 			                		<div class="col-md-4">
 			                			<div class="row">
-			                				<div class="col-md-6">
+			                				<div class="col-md-6 col-xs-6 col-sm-6">
 				                				<button class="btn btn-warning btn3" type="button">修改資料</button>
 				                			</div>
-				                			<div class="col-md-6">
+				                			<div class="col-md-6 col-xs-6 col-sm-6">
 				                				<button class="btn btn-success " type="submit">確認送出</button>
 				                			</div>
 			                			</div>
