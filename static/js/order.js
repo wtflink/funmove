@@ -59,16 +59,32 @@ $(document).ready(function(){
 		            	$('#calendar').fullCalendar( 'gotoDate', chooseDay );
 					});		
 
+					$('#id_time_needed_hr,#id_time_needed_min').change(function(){
+		            	var hr = $('#id_time_needed_hr').val();
+		            	var min = $('#id_time_needed_min').val();
+		            	calPrice(hr,min);
+					});
+
+					$('#priceHelp').bubbletip($('#priceTip'), { 
+						deltaDirection: 'right' ,
+						positionAtElement: $('#id_reservation_time')
+					});
+
+					$('#cont').bubbletip($('#contTip'), { 
+						deltaDirection: 'down'
+					});		
+
 });
 //onDRAGSTART="window.event.returnValue=false" onCONTEXTMENU="window.event.returnValue=false" onSelectStart="event.returnValue=false"
 
 				
-function calPrice(){
-	var usedTime = document.getElementById("id_time_needed_min").value;
-	if(usedTime==6){
+function calPrice(hr,min){
+	var total = 0;
+	total = hr * 600 + (min/30)*300 ; 
+	if(total==0){
 		document.getElementById("dollar").innerHTML = "費用另計，請與服務人員聯絡" ;
 	}else{
-		document.getElementById("dollar").innerHTML = "費用: " + usedTime * 300 + "元" ;
+		document.getElementById("dollar").innerHTML = "估計費用約為： " + total + " 元整" ;
 	}
 }
 

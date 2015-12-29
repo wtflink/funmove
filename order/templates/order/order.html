@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="{% static "sidr/css/jquery.sidr.dark.css" %}">
 	<link rel="stylesheet" href="{% static "css/home.css" %}">
 	<link rel="stylesheet" href="{% static "css/order.css" %}">
+	<link rel="stylesheet" href="{% static "js/bubbletip/bubbletip.css" %}">
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/hot-sneaks/jquery-ui.css" rel="stylesheet">
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
@@ -24,7 +25,8 @@
 	<script src="{% static "sidr/js/jquery.sidr.min.js" %}"></script>	
 	<script src="{% static "js/base.js" %}"></script> 
 	<script src="{% static "js/home.js" %}"></script>	
-	<script src="{% static "js/order.js" %}"></script>	
+	<script src="{% static "js/order.js" %}"></script>
+	<script src="{% static "js/jQuery.bubbletip-1.0.6.js" %}"></script>	
 
 	<style>
 		article,aside,figure,figcaption,footer,header,hgroup,menu,nav,section {display:block;}
@@ -49,7 +51,6 @@
   var end;
 
       function initialize() {
-      	document.getElementById("screensize").innerHTML = document.body.clientWidth + "x" + document.body.clientHeight;
         var mapOptions = {
           center: new google.maps.LatLng(22.992, 120.222) ,
           zoom: 14,
@@ -97,7 +98,9 @@ function computeTotalDistance(result) {
   var myroute = result.routes[0];
   var driveTime = myroute.legs[0].duration.value/60;
   var wholeTime = (driveTime + 15)/30 - 0.8;
-  var willTime = Math.ceil(wholeTime) + 1 ;
+  var willTime = (Math.ceil(wholeTime) + 1)*30 ;
+  var willHr = willTime/60;
+  var willMin = 0;
   var dollar = 0;
   for (var i = 0; i < myroute.legs.length; i++) {
     total += myroute.legs[i].distance.value;
@@ -107,7 +110,7 @@ function computeTotalDistance(result) {
   document.getElementById("id_destination").value = myroute.legs[0].end_address;
   document.getElementById('total').innerHTML = "行程距離: " + total + ' km';
   document.getElementById('time').innerHTML = "預估行程時間: " + myroute.legs[0].duration.text ;
-  document.getElementById('hint').innerHTML = "行程距離: " + total + ' km / 預估行程時間: ' + myroute.legs[0].duration.text + " / 推薦使用時間: " + willTime + "個半小時" ;
+  document.getElementById('hint').innerHTML = "估計行車距離: " + total + ' 公里<br>估計行車時間: ' + myroute.legs[0].duration.text + "<br>建議預約時間: " + willHr + "小時" ;
 }
 
 function initialize2(pFrom,pEnd) {
@@ -139,7 +142,16 @@ function initialize2(pFrom,pEnd) {
 			</div>
 			<div id="navigation">
 				    <nav class="navbar navbar-fixed-top navbar-background">
-				    	<div class="navbar-collapse collapse">
+				    	<div class="navbar-header">
+				    		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+						        <span class="sr-only">Toggle navigation</span>
+						        <span class="icon-bar"></span>
+							    <span class="icon-bar"></span>
+							    <span class="icon-bar"></span>
+						    </button>
+						    <a class="navbar-brand" href="#">Fuflow</a>
+				    	</div>
+				    	<div class="navbar-collapse collapse" id="navbar-collapse-1">
 				    		<ul class="nav navbar-nav navbar-left">
 				    		<li>
 				    			<!--
@@ -150,9 +162,8 @@ function initialize2(pFrom,pEnd) {
 				    		</li>
 				    		</ul>
 				    		<ul class="nav navbar-nav navbar-right">
-				    			<li><div id="screensize"></div></li>
 					            <li><a href="../when">我要放心搬</a></li>
-					            <li><a href="#usage">訂單查詢</a></li>
+					            <li><a href="#usage" id="cont">訂單查詢</a></li>
 					            <li><a href="#documentation">與我們聯絡</a></li>
 					            
 				        	</ul>
@@ -200,12 +211,13 @@ function initialize2(pFrom,pEnd) {
 									<div class="col-md-3 "></div>
 								</div>
 							</div>
-							<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+							
 						</div>	
 					</section>
 
 					<!---- Main Data---->
-					<section id="main"><br><br><br><br><br><br>
+					<section id="main">
+						<div class="row content">
 						<div class="row">
 							<div class="col-md-4 col-xs-4"></div>			
 							<div class="col-md-4 col-xs-4">	
@@ -215,7 +227,7 @@ function initialize2(pFrom,pEnd) {
 						</div>
 						<div class="row">
 							<div class="col-md-6 col-xs-6 col-sm-6">
-								<div class="decorateForm">
+								<div class="decorateForm ">
 									{{ form.reservation_date.errors }}
 									<label for="id_reservation_date">搬家日期:</label>
 									{{ form.reservation_date }}<br>
@@ -233,8 +245,7 @@ function initialize2(pFrom,pEnd) {
 									{{ form.time_needed_min.errors }}
 									<label for="id_time_needed_min">使用服務時間(分鐘):</label>
 									{{form.time_needed_min}}
-
-									<div id="dollar">所需費用: 300元</div>
+									<div id="dollar">所需費用: 0元</div><div id="priceHelp">?</div>
 								</div>
 							</div>
 							<div class="col-md-6 col-xs-6 col-sm-6">
@@ -248,21 +259,21 @@ function initialize2(pFrom,pEnd) {
 							</div>
 							<div class="col-md-4 col-xs-4"></div>
 						</div>
-						<br><br><br><br><br>
-						<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+						</div>
 					</section>
 
 					<!---- User Data---->
-					<section id="user"><br><br><br><br><br><br>
+					<section id="user">
+						<div class="row content">
 						<div class="row">
 							<div class="col-md-4 col-xs-4"></div>
-							<div class="col-md-4 col-xs-4 col-centered">
-								<button class="btn btn-primary btn1 btnDirection" type="button">PREV</button>
+							<div class="col-md-4 col-xs-4">
+								<div class="col-centered"><button class="btn btn-primary btn1 btnDirection" type="button">PREV</button></div>
 							</div>
 							<div class="col-md-4 col-xs-4"></div>
 						</div>
 						<div class="row">
-							<div class="decorateForm">
+							<div class="decorateForm col-centered">
 							<div class="col-md-6 col-xs-6 col-sm-6">
 								
 									{{ form.name.errors }}
@@ -301,22 +312,22 @@ function initialize2(pFrom,pEnd) {
 							</div>
 							<div class="col-md-4 col-xs-4"></div>
 						</div>
-						<div class="row">
-							<p><br><br></p>
 						</div>
 				    </div>
 
 				    </section>
 
 				    <!---- 確認資料---->
-				    <section id="verify"><br><br><br>
-				    	<div class="row feature_title">
+				    <section id="verify">
+				    	<div class="row content">
+				    	<div class="row verifyTitle">
 							<h1>確認資料</h1>
+							<hr>
 						</div>
 				    	<div class="row">
-				    		<div class="content_margin feature_content">
+				    		
 				    			<div class="row">	
-									<div class="userData">
+									<div class="userData col-centered">
 										<div class="row">
 											<div class="col-md-6 col-xs-6 col-sm-6">
 												<div id="departure"></div>
@@ -335,24 +346,31 @@ function initialize2(pFrom,pEnd) {
 										<div class="row">	
 											<br>
 											<div id="price" style="float:right;"></div>
+											<br>
 										</div>	
 									</div>	
 								</div>		
 								<div class="row">	    			
 		                			<div class="col-md-4"></div>
 			                		<div class="col-md-4">
-			                			<div class="row">
-			                				<div class="col-md-6 col-xs-6 col-sm-6">
-				                				<button class="btn btn-warning btn3" type="button">修改資料</button>
-				                			</div>
-				                			<div class="col-md-6 col-xs-6 col-sm-6">
-				                				<button class="btn btn-success " type="submit">確認送出</button>
-				                			</div>
+			                			<div class="row col-centered last-btn">
+			                				<div class="row">
+					                			<div class="col-md-4 col-xs-4 col-sm-4">
+					                				<button class="btn btn-primary btn2 btnDirection" type="button">PREV</button>
+					                			</div>
+					                			<div class="col-md-4 col-xs-4 col-sm-4">
+					                				<button class="btn btn-warning btn3" type="button">重新檢查</button>
+					                			</div>
+					                			<div class="col-md-4 col-xs-4 col-sm-4">
+					                				<button class="btn btn-success " type="submit">確認送出</button>
+					                			</div>
+					                		</div>
 			                			</div>
 			                		</div>
 			                		<div class="col-md-4"></div>	
 								</div>
-							</div>	
+							
+	                	</div>
 	                	</div>
 					</section>
 
@@ -364,6 +382,22 @@ function initialize2(pFrom,pEnd) {
 	
 	</div>
 	</article>
+
+	<div id="priceTip">
+		親愛的使用者 您好，放心搬目前為試營運階段，計價方面為以下說明：<br>
+		<br>
+		放心搬以【30分鐘】為【1單位】做收費基準，每單位費用為【300元】整。<br>
+		<br>
+		範例：今日我從「出發地把東西搬上車」直到「目的地把東西搬下車」這樣的過程可能需要45分鐘，<br>
+		因此我可以向放心搬預約『2個單位』共60分鐘的服務時間，因此我的費用為600元整。<br>
+		<br>
+		計價方案未來將調整更有利於使用者的計價方式，敬請期待！
+	</div>
+
+	<div id="contTip">
+		功能更新中，敬請見諒！
+	</div>	
+
 	<footer class="footer_section">
 		<div class="row">
 			
