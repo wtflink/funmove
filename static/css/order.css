@@ -132,13 +132,10 @@ label , #dollar{
 	font-size: 10pt;
 }
 
-@media screen and (min-width: 480px) and (max-width: 750px){
-	#map, #main, #user, #verify {max-height: 625px;}
-	#main .btn3 {margin-top:250px;}
-	#map .row .decorateForm { position: relative;width:250px;margin-top:-80%;margin-left:10%;padding:3% 5%;}
-	#main .row .decorateForm {height: 50%;width:80%;padding:3%;margin-left:5%;margin-bottom:8%;margin-top:5%;}
-	#calendar {position:relative;width:100%;height:60%;overflow-y:hidden;margin-bottom:8%;margin-top:5%;}
-	#user .row .decorateForm {margin-top:5%;margin-bottom:15%;}
-	.userData {padding:2%;width:90%;margin-left:5%;}
-
+@media screen and (min-width: 480px) and (max-width: 1000px){
+	#map .row .decorateForm {width:40%;}
+	#main .row .decorateForm {width:80%;}
+	#calendar {width:80%;}
+	#user .row .decorateForm {width:80%;}
+	#verify .userData {width:80%;font-size: 10pt;}
 } 

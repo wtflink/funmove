@@ -49,6 +49,22 @@ $(document).ready(function(){
 							defaultDate: new Date(),
 							editable: false,
 							eventLimit: true, // allow "more" link when too many events
+							buttonText: {
+						        today: '今日訂單',
+								prev: '上一日', // left triangle
+                				next: '下一日', // right triangle
+						    },
+						    timeFormat: {
+						        '': 'H:mm{-H:mm}'
+						    },
+						    columnFormat: {
+						        day: 'dddd'
+						    },
+						    titleFormat: {
+						        day: 'YYYY/MMMM/D'
+						    },
+						    monthNames: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+						    dayNames: ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
 							events: [
 								
 							]
