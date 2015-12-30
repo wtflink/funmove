@@ -6,7 +6,7 @@ from payment.models import PaymentRecords
 from moving_require import MovingRequire
 from driver_expection import DriverExpection
 from datetime import datetime
-from django.core.validators import MinLengthValidator
+from django.core.validators import MinLengthValidator, MaxLengthValidator
 
 
 # 訂單
@@ -34,7 +34,7 @@ class Orders(models.Model):
 
     name = models.CharField(max_length=45, default = None, null=False, blank=False)
     email = models.EmailField(default = None,null=False, blank=False)
-    cell_phone = models.CharField(validators=[MinLengthValidator(10)], max_length=11, null=False, blank=False, default =None,)
+    cell_phone = models.CharField(validators=[MinLengthValidator(10), MaxLengthValidator(10)],max_length =11, null=False, blank=False, default =None,)
     # 出生日
     birth_year = models.IntegerField(
         max_length=4,
