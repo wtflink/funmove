@@ -1,6 +1,7 @@
 *.pyc
 *.pyo
 
+venv/
 media/
 web/migrations/
 vehicle/migrations/
