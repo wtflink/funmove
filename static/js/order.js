@@ -83,7 +83,7 @@ $(document).ready(function(){
 
 					$('#priceHelp').bubbletip($('#priceTip'), { 
 						deltaDirection: 'right' ,
-						positionAtElement: $('#id_reservation_time')
+						offsetTop: 600
 					});
 
 					$('#cont').bubbletip($('#contTip'), { 
@@ -107,9 +107,9 @@ function calPrice(hr,min){
 function cacheData(){
 	document.getElementById("departure").innerHTML = "出發地: " + document.getElementById("id_departure").value;
 	document.getElementById("destination").innerHTML = "目的地: " + document.getElementById("id_destination").value;
-	document.getElementById("reservation_date").innerHTML = "日期: " + document.getElementById("id_reservation_date").value;
-	document.getElementById("reservation_time").innerHTML = "時間: " + document.getElementById("id_reservation_time").value;
-	document.getElementById("time_needed_min").innerHTML = "使用服務: " + document.getElementById("id_time_needed_min").value + "個半小時";
+	document.getElementById("reservation_date").innerHTML = "服務日期: " + document.getElementById("id_reservation_date").value;
+	document.getElementById("reservation_time").innerHTML = "起始時間: " + document.getElementById("id_reservation_time").value;
+	document.getElementById("time_needed_min").innerHTML = "使用服務時間: " + document.getElementById("id_time_needed_hr").value + "小時" + document.getElementById("id_time_needed_min").value + "分鐘";
 	document.getElementById("user_name").innerHTML = "姓名: " + document.getElementById("id_name").value;
 	document.getElementById("user_email").innerHTML = "Email: " + document.getElementById("id_email").value;
 	document.getElementById("user_cellphone").innerHTML = "手機: " + document.getElementById("id_cell_phone").value;

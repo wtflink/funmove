@@ -88,7 +88,7 @@ body:before {
 
 #verify .userData {
 	text-align: left;
-	font-size: 12pt;
+	font-size: 11pt;
 	line-height: 35px;
 	background-color: #ffffff;
 	height: 300px;
@@ -132,7 +132,7 @@ label , #dollar{
 	font-size: 10pt;
 }
 
-@media screen and (min-width: 480px) and (max-width: 1000px){
+@media screen and (min-width: 480px) and (max-width: 1200px){
 	#map .row .decorateForm {width:40%;}
 	#main .row .decorateForm {width:80%;}
 	#calendar {width:80%;}
