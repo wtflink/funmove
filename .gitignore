@@ -1,0 +1,11 @@
+*.pyc
+*.pyo
+
+media/
+web/migrations/
+vehicle/migrations/
+payment/migrations/
+order/migrations/
+member/migrations/
+funmove/migrations/
+backend/migrations/
