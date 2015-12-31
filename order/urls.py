@@ -9,7 +9,6 @@ urlpatterns = patterns(
 	url(r'^index/$', 'order.views.order_index', name='order_index'),
 	url(r'^when/$', 'order.views.order', name='order_when'),
 	url(r'^confirm/(?P<confirmation_key>\w+)/', 'order.views.confirm', name='order_confirm'),
-	url(r'^events.json$', 'schedule.views.events_json', name='events.json')
 
 
 )+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

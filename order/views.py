@@ -68,36 +68,3 @@ def confirm(request, confirmation_key):
 	order.confirmation_key = 'done'
 	order.save()
 	return render_to_response('order/confirm.html', {'order' : order}, context_instance = RequestContext(request))
-
-def events_json(request):
-    # Get all events - Pas encore terminé
-    events = Event.objects.all()
-
-    # Create the fullcalendar json events list
-    event_list = []
-
-    for event in events:
-        # On récupère les dates dans le bon fuseau horaire
-        event_start = event.start.astimezone(timezone.get_default_timezone())
-        event_end = event.end.astimezone(timezone.get_default_timezone())
-
-        # On décide que si l'événement commence à minuit c'est un
-        # événement sur la journée
-        if event_start.hour == 0 and event_start.minute == 0:
-            allDay = True
-        else:
-            allDay = False
-
-        if not event.is_cancelled:
-            event_list.append({
-                    'id': event.id,
-                    'start': event_start.strftime('%Y-%m-%d %H:%M:%S'),
-                    'end': event_end.strftime('%Y-%m-%d %H:%M:%S'),
-                    'title': event.title,
-                    'allDay': allDay
-                    })
-
-    if len(event_list) == 0:
-        raise http.Http404
-    else:
-        return http.HttpResponse(json.dumps(event_list),content_type='application/json')
