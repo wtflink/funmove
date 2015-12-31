@@ -49,9 +49,23 @@ $(document).ready(function(){
 							defaultDate: new Date(),
 							editable: false,
 							eventLimit: true, // allow "more" link when too many events
-							events: [
-								
-							]
+							buttonText: {
+						        today: '今日訂單',
+								prev: '上一日', // left triangle
+                				next: '下一日', // right triangle
+						    },
+						    timeFormat: {
+						        '': 'H:mm{-H:mm}'
+						    },
+						    columnFormat: {
+						        day: 'dddd'
+						    },
+						    titleFormat: {
+						        day: 'YYYY/MMMM/D'
+						    },
+						    monthNames: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+						    dayNames: ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+							events: '/schedule/events.json'
 						});	
 
 					$('#id_reservation_date').change(function(){
@@ -59,25 +73,41 @@ $(document).ready(function(){
 		            	$('#calendar').fullCalendar( 'gotoDate', chooseDay );
 					});		
 
+					$('#id_time_needed_hr,#id_time_needed_min').change(function(){
+		            	var hr = $('#id_time_needed_hr').val();
+		            	var min = $('#id_time_needed_min').val();
+		            	calPrice(hr,min);
+					});
+
+					$('#priceHelp').bubbletip($('#priceTip'), { 
+						deltaDirection: 'right' ,
+						offsetTop: 600
+					});
+
+					$('#cont').bubbletip($('#contTip'), { 
+						deltaDirection: 'down'
+					});		
+
 });
 //onDRAGSTART="window.event.returnValue=false" onCONTEXTMENU="window.event.returnValue=false" onSelectStart="event.returnValue=false"
 
 				
-function calPrice(){
-	var usedTime = document.getElementById("id_time_needed_min").value;
-	if(usedTime==6){
+function calPrice(hr,min){
+	var total = 0;
+	total = hr * 600 + (min/30)*300 ; 
+	if(total==0){
 		document.getElementById("dollar").innerHTML = "費用另計，請與服務人員聯絡" ;
 	}else{
-		document.getElementById("dollar").innerHTML = "費用: " + usedTime * 300 + "元" ;
+		document.getElementById("dollar").innerHTML = "估計費用約為： " + total + " 元整" ;
 	}
 }
 
 function cacheData(){
 	document.getElementById("departure").innerHTML = "出發地: " + document.getElementById("id_departure").value;
 	document.getElementById("destination").innerHTML = "目的地: " + document.getElementById("id_destination").value;
-	document.getElementById("reservation_date").innerHTML = "日期: " + document.getElementById("id_reservation_date").value;
-	document.getElementById("reservation_time").innerHTML = "時間: " + document.getElementById("id_reservation_time").value;
-	document.getElementById("time_needed_min").innerHTML = "使用服務: " + document.getElementById("id_time_needed_min").value + "個半小時";
+	document.getElementById("reservation_date").innerHTML = "服務日期: " + document.getElementById("id_reservation_date").value;
+	document.getElementById("reservation_time").innerHTML = "起始時間: " + document.getElementById("id_reservation_time").value;
+	document.getElementById("time_needed_min").innerHTML = "使用服務時間: " + document.getElementById("id_time_needed_hr").value + "小時" + document.getElementById("id_time_needed_min").value + "分鐘";
 	document.getElementById("user_name").innerHTML = "姓名: " + document.getElementById("id_name").value;
 	document.getElementById("user_email").innerHTML = "Email: " + document.getElementById("id_email").value;
 	document.getElementById("user_cellphone").innerHTML = "手機: " + document.getElementById("id_cell_phone").value;
