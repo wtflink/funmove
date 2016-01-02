@@ -63,27 +63,7 @@ $(document).ready(function(){
 						    },
 						    monthNames: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
 						    dayNames: ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
-							events: [
-								{
-									"title": 'Meeting',
-									"start": '2016-01-02T10:30:00',
-									"end": '2016-01-02T12:30:00'
-								},
-								{
-									"start": "2015-12-31T12:00:00", 
-									"allDay": false, 
-									"end": "2015-12-31T12:00:00", 
-									"id": 1, 
-									"title": "reserved"
-								}, 
-								{
-									"start": "2015-12-31T12:00:00", 
-									"allDay": false, 
-									"end": "2015-12-31T14:00:00", 
-									"id": 2, 
-									"title": "reserved"
-								}
-							]
+							events: '/order/events.json'
 						});	
 
 					$('#id_reservation_date').change(function(){
