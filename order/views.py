@@ -57,7 +57,7 @@ def order(request):
 			#save the time that has been reserved
 			Schedule.objects.create( reservation_start = start, 
 									 reservation_end = end, 
-									 title = 'reserved' )	
+									 title = 'Reserved' )	
 
 			#send a mail of the order information to the user by which email address they input
 			#edit the template in the templates/order/email_template.txt to change the context of it
@@ -68,7 +68,7 @@ def order(request):
 			msg = EmailMultiAlternatives('ur order', text_content, 'wtflink515@gmail.com', [sendto])
 			msg.send()
 
-			return HttpResponseRedirect('/order/when')
+			return HttpResponseRedirect('/order/success')
 	else:
 		form = OrderForm()
 	return render(request, 'order/order.html', locals())
@@ -116,3 +116,6 @@ def events_json(request):
 		raise Http404
 	else:
 		return HttpResponse(json.dumps(json_list), content_type='application/json')
+
+def order_success(request):
+	return render(request, 'order/success.html', locals())
