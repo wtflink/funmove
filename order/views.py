@@ -30,9 +30,6 @@ def order(request):
 			salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
 			order.confirmation_key = hashlib.sha1(salt+sendto).hexdigest()
 			order.key_expires = timezone.now() + datetime.timedelta(days=2)
-			order.save()
-
-			#save the time that has been reserved
 			start = datetime.datetime(
 				order.reservation_date.year,
 				order.reservation_date.month, 
@@ -44,10 +41,23 @@ def order(request):
 				order.reservation_date.month, 
 				order.reservation_date.day,
 				order.reservation_time.hour  + order.time_needed_hr,
-				order.reservation_time.minute+ order.time_needed_min*30, 0, 0)
+				order.reservation_time.minute+ order.time_needed_min, 0, 0)
+			#check the time if is reserved
+			events = Schedule.objects.all()
+			for event in events:
+				if event.reservation_start.astimezone(timezone.get_default_timezone()) >= start.replace(tzinfo=timezone.get_default_timezone()) and event.reservation_end.astimezone(timezone.get_default_timezone()) <= end.replace(tzinfo=timezone.get_default_timezone()):
+					return render_to_response('order/conflict.html', {'order' : order}, context_instance = RequestContext(request))
+				if event.reservation_start.astimezone(timezone.get_default_timezone()) < end.replace(tzinfo=timezone.get_default_timezone()) and event.reservation_end.astimezone(timezone.get_default_timezone()) >= end.replace(tzinfo=timezone.get_default_timezone()):
+					return render_to_response('order/conflict.html', {'order' : order}, context_instance = RequestContext(request))
+				if event.reservation_start.astimezone(timezone.get_default_timezone()) <= start.replace(tzinfo=timezone.get_default_timezone()) and event.reservation_end.astimezone(timezone.get_default_timezone()) > start.replace(tzinfo=timezone.get_default_timezone()):
+					return render_to_response('order/conflict.html', {'order' : order}, context_instance = RequestContext(request))
+
+			order.save()
+
+			#save the time that has been reserved
 			Schedule.objects.create( reservation_start = start, 
 									 reservation_end = end, 
-									 title = 'reserved' )	
+									 title = 'Reserved' )	
 
 			#send a mail of the order information to the user by which email address they input
 			#edit the template in the templates/order/email_template.txt to change the context of it
@@ -58,7 +68,7 @@ def order(request):
 			msg = EmailMultiAlternatives('ur order', text_content, 'wtflink515@gmail.com', [sendto])
 			msg.send()
 
-			return HttpResponseRedirect('/order/when')
+			return HttpResponseRedirect('/order/success')
 	else:
 		form = OrderForm()
 	return render(request, 'order/order.html', locals())
@@ -106,3 +116,6 @@ def events_json(request):
 		raise Http404
 	else:
 		return HttpResponse(json.dumps(json_list), content_type='application/json')
+
+def order_success(request):
+	return render(request, 'order/success.html', locals())
