@@ -8,5 +8,8 @@ class timeofaday(models.Model):
 
 class Schedule(models.Model):
 
-    reservation_date = models.DateField(default = datetime.now, null=False, blank=False)
-    reservation_time = models.ForeignKey('timeofaday', on_delete=models.CASCADE)
+	id = models.AutoField(primary_key=True)
+	reservation_start = models.DateTimeField(default = datetime.now(),null=False, blank=False)
+	reservation_end = models.DateTimeField(default=datetime.now,null=False, blank=False)
+	title = models.CharField(max_length=45, default = None, null=False, blank=False)
+	is_cancelled = models.BooleanField(default = False)
