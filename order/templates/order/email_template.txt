@@ -14,7 +14,7 @@ remarks: {{ order.remarks }}
 若您無法點選連結，請複製以下網址貼到您的瀏覽器即可。
 http://127.0.0.1:8000/order/confirm/{{ order.confirmation_key }}
 
-http://fuflow.com/order/confirm/{{ order.confirmation_key }}
+http://www.fuflow.com/order/confirm/{{ order.confirmation_key }}
 
 確認後，您即可開始準備要搬運的物品。
 放心地，搬運您的物品！
