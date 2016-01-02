@@ -12,11 +12,14 @@ body:before {
 
 #map, #main, #user, #verify {
 	max-height: 1440px;
+	height:100%;
+	width:100%;
 	position:relative;
 }
 
 .content {
-	height:100%;
+	position:relative;
+	top:calc(15%);
 }
 
 .decorateForm {
@@ -43,7 +46,7 @@ body:before {
 	opacity: 0.8;
 
 }
-
+/*
 #main .btn3,#user .btn1 {
 	margin-top:80px;
 }
@@ -51,7 +54,7 @@ body:before {
 #verify .verifyTitle {
 	margin-top:80px;
 }
-
+*/
 #main .row .decorateForm {
 
 	float:right;
@@ -143,4 +146,5 @@ label , #dollar{
 	#verify .userData {width:80%;font-size: 10pt;}
 	.btnDirection ,.last-btn button{width:80px;}
 	#id_remarks {height: 130%;}
+	.content {top:calc(20%);}
 } 
