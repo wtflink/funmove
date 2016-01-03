@@ -119,6 +119,12 @@ body:before {
 	font-weight: bolder;
 }
 
+#total, #time {
+	color: #ffffff;
+	font-size: 12pt;
+	font-weight: lighter;
+}
+
 #hint {
 
 	background-color: #bbbde8;

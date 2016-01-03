@@ -149,7 +149,7 @@ function initialize2(pFrom,pEnd) {
 							    <span class="icon-bar"></span>
 							    <span class="icon-bar"></span>
 						    </button>
-						    <a class="navbar-brand" href="../when/">Fuflow</a>
+						    <a class="navbar-brand" href="../when/">Funmove放心搬</a>
 				    	</div>
 				    	<div class="navbar-collapse collapse" id="navbar-collapse-1">
 				    		<ul class="nav navbar-nav navbar-left">
@@ -177,7 +177,7 @@ function initialize2(pFrom,pEnd) {
 	<div id="form_page">
 	<div class="container">
 
-            <form action="" method="POST">{% csrf_token %}
+            <form name="funmove" action="" method="POST">{% csrf_token %}
                 <p>{{ form.non_field_errors }}</p>
 				<div class="">
 					<!---- Map Data---->
@@ -186,7 +186,7 @@ function initialize2(pFrom,pEnd) {
 							<div id="map-canvas"></div>
 							<div class="decorateForm">
 								{{ form.departure.errors }}
-								<label for="id_departure">出發地:</label>
+								<label for="id_departure">起始地:</label>
 								{{ form.departure }}<br>
 
 								{{ form.destination.errors }}
@@ -197,7 +197,7 @@ function initialize2(pFrom,pEnd) {
 								<div class="row">
 									<div class="col-md-3 "></div>
 									<div class="col-md-6 ">
-										<input onclick="initialize2(id_departure.value,id_destination.value)" class="btn btn-info btn-sm" type="button" value="瀏覽自訂地標">
+										<input onclick="initialize2(id_departure.value,id_destination.value)" class="btn btn-info btn-sm" type="button" value="確認地點">
 									</div>
 									<div class="col-md-3 "></div>
 								</div>
@@ -342,6 +342,11 @@ function initialize2(pFrom,pEnd) {
 												<div id="user_birth"></div>
 											</div>
 										</div>	
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<div id="remarks"></div>
+											</div>
+										</div>
 										<div class="row">	
 											<br>
 											<div id="price" style="float:right;"></div>
@@ -361,7 +366,7 @@ function initialize2(pFrom,pEnd) {
 					                				<button class="btn btn-warning btn3" type="button">重新檢查</button>
 					                			</div>
 					                			<div class="col-md-4 col-xs-4 col-sm-4">
-					                				<button class="btn btn-success " type="submit">確認送出</button>
+					                				<button class="btn btn-success " onClick="checkForm()" type="button">確認送出</button>
 					                			</div>
 					                		</div>
 			                			</div>
