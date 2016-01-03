@@ -135,11 +135,7 @@ function checkForm(){
 }
 
 function cacheData(){
-<<<<<<< HEAD
-	document.getElementById("departure").innerHTML = "起始地: " + document.getElementById("id_departure").value.substring(5);
-=======
 	document.getElementById("departure").innerHTML = "出發地: " + document.getElementById("id_departure").value.substring(5);
->>>>>>> fe198f01b3109b34250a3470de226e963c4b871a
 	document.getElementById("destination").innerHTML = "目的地: " + document.getElementById("id_destination").value.substring(5);
 	document.getElementById("reservation_date").innerHTML = "預約時間: " + document.getElementById("id_reservation_date").value + " " + document.getElementById("id_reservation_time").value;
 	document.getElementById("time_needed").innerHTML = "預計多久: " + document.getElementById("id_time_needed_hr").value + "小時" + document.getElementById("id_time_needed_min").value + "分鐘";
