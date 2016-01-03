@@ -48,7 +48,7 @@ $(document).ready(function(){
 							header: {
 								left: 'prev,next today',
 								center: 'title',
-								right: 'basicWeek,basicDay'
+								right: 'month,basicDay'
 							},
 							defaultView: 'basicDay',
 							defaultDate: new Date(),
@@ -56,7 +56,7 @@ $(document).ready(function(){
 							eventLimit: true, // allow "more" link when too many events
 							buttonText: {
 						        today: '今日訂單',
-						        week: '周訂單',
+						        month: '月訂單',
 						        day: '日訂單',
 								prev: '◄', // left triangle
                 				next: '►', // right triangle
@@ -67,7 +67,7 @@ $(document).ready(function(){
 						        day: 'dddd'
 						    },
 						    titleFormat: {
-						    	week: 'YYYY年MMMM月D日',
+						    	month: 'YYYY年MMMM月',
 						        day: 'YYYY年MMMM月D日'
 						    },
 						    monthNames: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
@@ -135,7 +135,11 @@ function checkForm(){
 }
 
 function cacheData(){
+<<<<<<< HEAD
 	document.getElementById("departure").innerHTML = "起始地: " + document.getElementById("id_departure").value.substring(5);
+=======
+	document.getElementById("departure").innerHTML = "出發地: " + document.getElementById("id_departure").value.substring(5);
+>>>>>>> fe198f01b3109b34250a3470de226e963c4b871a
 	document.getElementById("destination").innerHTML = "目的地: " + document.getElementById("id_destination").value.substring(5);
 	document.getElementById("reservation_date").innerHTML = "預約時間: " + document.getElementById("id_reservation_date").value + " " + document.getElementById("id_reservation_time").value;
 	document.getElementById("time_needed").innerHTML = "預計多久: " + document.getElementById("id_time_needed_hr").value + "小時" + document.getElementById("id_time_needed_min").value + "分鐘";
