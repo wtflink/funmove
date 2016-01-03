@@ -48,7 +48,7 @@ $(document).ready(function(){
 							header: {
 								left: 'prev,next today',
 								center: 'title',
-								right: 'month,basicDay'
+								right: 'basicWeek,basicDay'
 							},
 							defaultView: 'basicDay',
 							defaultDate: new Date(),
@@ -56,28 +56,42 @@ $(document).ready(function(){
 							eventLimit: true, // allow "more" link when too many events
 							buttonText: {
 						        today: '今日訂單',
-						        month: '月訂單',
+						        week: '周訂單',
 						        day: '日訂單',
 								prev: '◄', // left triangle
                 				next: '►', // right triangle
 						    },
 						    timeFormat: 'H:mm',
 						    columnFormat: {
+						    	week: 'dddd MMMM/D ',
 						        day: 'dddd'
 						    },
 						    titleFormat: {
-						    	month: 'YYYY年MMMM月',
+						    	week: 'YYYY年MMMM月D日',
 						        day: 'YYYY年MMMM月D日'
 						    },
 						    monthNames: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
 						    dayNames: ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+						    eventAfterRender: function (event, element) {
+                				$('.fc-content, .fc-time, .fc-title').css('font-size', '2em');
+                			},
 							events: '/order/events.json'
+							/*[
+		                        {
+		                   			title: 'Reserved',
+		                            start  : '2016-01-03 06:00:00',
+		                            end  : '2016-01-03 08:00:00',                          
+		                            allDay : false
+		                    }]*/
 						});	
+						
 
 					$('#id_reservation_date').change(function(){
 		            	var chooseDay = $(this).val();
 		            	$('#calendar').fullCalendar( 'gotoDate', chooseDay );
 					});		
+
+					$('.fc-content, .fc-time, .fc-title').css('font-size', '2em');
 
 					$('#id_time_needed_hr,#id_time_needed_min').change(function(){
 		            	var hr = $('#id_time_needed_hr').val();
@@ -131,10 +145,10 @@ function checkForm(){
 }
 
 function cacheData(){
-	document.getElementById("departure").innerHTML = "出發地: " + document.getElementById("id_departure").value.substring(5);
+	document.getElementById("departure").innerHTML = "起始地: " + document.getElementById("id_departure").value.substring(5);
 	document.getElementById("destination").innerHTML = "目的地: " + document.getElementById("id_destination").value.substring(5);
 	document.getElementById("reservation_date").innerHTML = "預約時間: " + document.getElementById("id_reservation_date").value + " " + document.getElementById("id_reservation_time").value;
-	document.getElementById("time_needed").innerHTML = "使用服務時間: " + document.getElementById("id_time_needed_hr").value + "小時" + document.getElementById("id_time_needed_min").value + "分鐘";
+	document.getElementById("time_needed").innerHTML = "預計多久: " + document.getElementById("id_time_needed_hr").value + "小時" + document.getElementById("id_time_needed_min").value + "分鐘";
 	document.getElementById("user_name").innerHTML = "姓名: " + document.getElementById("id_name").value;
 	document.getElementById("user_email").innerHTML = "Email: " + document.getElementById("id_email").value;
 	document.getElementById("user_cellphone").innerHTML = "手機: " + document.getElementById("id_cell_phone").value;
