@@ -119,6 +119,12 @@ body:before {
 	font-weight: bolder;
 }
 
+#total, #time {
+	color: #ffffff;
+	font-size: 12pt;
+	font-weight: lighter;
+}
+
 #hint {
 
 	background-color: #bbbde8;
@@ -127,7 +133,7 @@ body:before {
 }
 
 #id_remarks {
-	height: 160%;
+	height: 250px;
 }
 
 label , #dollar{
@@ -145,6 +151,5 @@ label , #dollar{
 	#user .row .decorateForm {width:80%;}
 	#verify .userData {width:80%;font-size: 10pt;}
 	.btnDirection ,.last-btn button{width:80px;}
-	#id_remarks {height: 130%;}
 	.content {top:calc(20%);}
 } 
