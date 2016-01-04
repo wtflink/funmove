@@ -104,6 +104,11 @@ $(document).ready(function(){
 						positionAtElement: $('#hint')
 					});
 
+					$('.checkPos').bubbletip($('#mapTip'), { 
+						deltaDirection: 'right' ,
+						positionAtElement: $('.yesPos')
+					});
+
 					$('#cont').bubbletip($('#contTip'), { 
 						deltaDirection: 'down'
 					});		

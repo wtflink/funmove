@@ -145,7 +145,7 @@ label , #dollar{
 	font-size: 11pt;
 }
 
-#priceTip ,#contTip {
+#priceTip ,#mapTip, #contTip {
 	font-size: 10pt;
 }
 
