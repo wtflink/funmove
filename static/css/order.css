@@ -10,11 +10,16 @@ body:before {
 }
 
 
-#map, #main, #user, #verify {
+#map, #main, #user, #verify, #warning {
+	max-width: 1920px;
 	max-height: 1440px;
 	height:100%;
 	width:100%;
 	position:relative;
+}
+
+#warning {
+	display:none;
 }
 
 .content {
@@ -30,8 +35,8 @@ body:before {
 #map-canvas {
 	position:fixed; 
 
-	left:-200px; 
-	width:150%;
+	left:-400px; 
+	width:200%;
 	height:100%;	
 }
 
@@ -153,3 +158,13 @@ label , #dollar{
 	.btnDirection ,.last-btn button{width:80px;}
 	.content {top:calc(20%);}
 } 
+
+@media screen and (max-width: 479px) {
+	#map, #main, #user, #verify {display: none;}
+	#warning {display:block;}
+}
+
+@media screen and (max-height: 579px) {
+	#map, #main, #user, #verify {display: none;}
+	#warning {display:block;}
+}

@@ -75,14 +75,14 @@ $(document).ready(function(){
 						    eventAfterRender: function (event, element) {
                 				$('.fc-content, .fc-time, .fc-title').css('font-size', '2em');
                 			},
-							events: '/order/events.json'
-							/*[
+							events: //'/order/events.json'
+							[
 		                        {
 		                   			title: 'Reserved',
 		                            start  : '2016-01-03 06:00:00',
 		                            end  : '2016-01-03 08:00:00',                          
 		                            allDay : false
-		                    }]*/
+		                    }]
 						});	
 						
 
