@@ -75,7 +75,8 @@ $(document).ready(function(){
 						    eventAfterRender: function (event, element) {
                 				$('.fc-content, .fc-time, .fc-title').css('font-size', '2em');
                 			},
-							events: //'/order/events.json'
+							events: '/order/events.json'
+							/*
 							[
 		                        {
 		                   			title: 'Reserved',
@@ -83,6 +84,7 @@ $(document).ready(function(){
 		                            end  : '2016-01-03 08:00:00',                          
 		                            allDay : false
 		                    }]
+		                    */
 						});	
 						
 
