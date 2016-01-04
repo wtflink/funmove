@@ -196,7 +196,7 @@ function initialize2(pFrom,pEnd) {
 								<br>
 								<div class="row">
 									<div class="col-md-3 "></div>
-									<div class="col-md-6 ">
+									<div class="col-md-6 yesPos">
 										<input onclick="initialize2(id_departure.value,id_destination.value)" class="btn btn-info btn-sm" type="button" value="確認地點">
 									</div>
 									<div class="col-md-3 "></div>
@@ -205,7 +205,7 @@ function initialize2(pFrom,pEnd) {
 								<div id="time"></div>
 								<div class="row">
 									<div class="col-md-3 "></div>
-									<div class="col-md-6 ">
+									<div class="col-md-6 checkPos">
 										<input class="btn btn-primary btn1" type="button" value="NEXT">
 									</div>
 									<div class="col-md-3 "></div>
@@ -377,7 +377,12 @@ function initialize2(pFrom,pEnd) {
 	                	</div>
 	                	</div>
 					</section>
-
+					<section id="warning">
+						<div class="row content">
+							<p>很抱歉，我們的服務網頁目前並不支援您的螢幕解析度，敬請見諒！</p><br>
+							<p>請使用電腦瀏覽器以取得網頁最佳瀏覽品質，謝謝您的配合！</p>
+						</div>
+					</section>	
             </form>
             
             
@@ -401,6 +406,14 @@ function initialize2(pFrom,pEnd) {
 		<br>
 		計價方案未來將調整更有利於使用者的計價方式，敬請期待！
 	</div>
+
+	<div id="mapTip">
+		請先拖曳地圖上的A、B兩點到您所指定的位置<br>
+		A為起始地，B為目的地<br>
+		或者直接在起始地與目的地兩個欄位打上您所指定正確的住址<br>
+		別忘了，確定地點之後，記得按下「確認地點」按鈕<br>
+		以利於後續訂單進行喔！
+	</div>	
 
 	<div id="contTip">
 		功能更新中，敬請見諒！

@@ -76,13 +76,15 @@ $(document).ready(function(){
                 				$('.fc-content, .fc-time, .fc-title').css('font-size', '2em');
                 			},
 							events: '/order/events.json'
-							/*[
+							/*
+							[
 		                        {
 		                   			title: 'Reserved',
 		                            start  : '2016-01-03 06:00:00',
 		                            end  : '2016-01-03 08:00:00',                          
 		                            allDay : false
-		                    }]*/
+		                    }]
+		                    */
 						});	
 						
 
@@ -102,6 +104,11 @@ $(document).ready(function(){
 					$('#priceHelp').bubbletip($('#priceTip'), { 
 						deltaDirection: 'right' ,
 						positionAtElement: $('#hint')
+					});
+
+					$('.checkPos').bubbletip($('#mapTip'), { 
+						deltaDirection: 'right' ,
+						positionAtElement: $('.yesPos')
 					});
 
 					$('#cont').bubbletip($('#contTip'), { 
