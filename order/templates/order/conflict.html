@@ -6,7 +6,9 @@
 </head>
 <body>
 <p>親愛的 {{ order.name }} 您好,</p>
-<p>conflict</p>
+<p>您所預約的時間已經有其他訂單了</p>
 <p>預約時間： {{ order.reservation_date|date:'Y-m-d' }} {{ order.reservation_time|time:'H:i' }}</p>
+<p>麻煩請重新預定。</p>
+<a href="http://www.fuflow.com/order/when">重新預定</a>
 </body>
 </html>
