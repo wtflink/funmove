@@ -5,7 +5,7 @@ from order_state import OrderState
 from payment.models import PaymentRecords
 from moving_require import MovingRequire
 from driver_expection import DriverExpection
-from datetime import datetime
+from datetime import datetime, date
 from django.core.validators import MinLengthValidator, MaxLengthValidator
 
 
@@ -19,7 +19,7 @@ class Orders(models.Model):
     # TODO : Order 由於django尚不支援 BigInt Auto_increment，所以後續要處理
     id = models.AutoField(primary_key=True)
     # 搬運日期
-    reservation_date = models.DateField(default = datetime.now, null=False, blank=False)
+    reservation_date = models.DateField(default=date.today  , null=False, blank=False)
     # 搬運時間(time that start the service) /?choices needed?/
     reservation_time = models.TimeField(default = '12:00',null=False, blank=False)
     #服務時間(store an int which indicate the length of the service)
@@ -34,7 +34,7 @@ class Orders(models.Model):
 
     name = models.CharField(max_length=45, default = None, null=False, blank=False)
     email = models.EmailField(default = None,null=False, blank=False)
-    cell_phone = models.CharField(validators=[MinLengthValidator(10), MaxLengthValidator(10)],max_length =11, null=False, blank=False, default =None,)
+    cell_phone = models.CharField(validators=[MinLengthValidator(10), MaxLengthValidator(10)],max_length =10, null=False, blank=False, default =None,)
     # 出生日
     birth_year = models.IntegerField(
         max_length=4,

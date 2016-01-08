@@ -30,6 +30,7 @@ def order(request):
 			salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
 			order.confirmation_key = hashlib.sha1(salt+sendto).hexdigest()
 			order.key_expires = timezone.now() + datetime.timedelta(days=2)
+			#order.reservation_date = order.reservation_date - datetime.timedelta(hours=8)
 			start = datetime.datetime(
 				order.reservation_date.year,
 				order.reservation_date.month, 
@@ -62,10 +63,13 @@ def order(request):
 			#send a mail of the order information to the user by which email address they input
 			#edit the template in the templates/order/email_template.txt to change the context of it
 			
-			text = get_template('order/email_template.txt')
+			#text = get_template('order/email_template.txt')
+			html = get_template('order/email_template.html')
 			mailcont = Context({ 'order': order })
-			text_content = text.render(mailcont)
-			msg = EmailMultiAlternatives('ur order', text_content, 'wtflink515@gmail.com', [sendto])
+			#text_content = text.render(mailcont)
+			html_content = html.render(mailcont)
+			msg = EmailMultiAlternatives('ur order', '', 'funmovv@gmail.com', [sendto])
+			msg.attach_alternative(html_content, "text/html")
 			msg.send()
 
 			return HttpResponseRedirect('/order/success')

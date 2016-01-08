@@ -4,10 +4,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = patterns(
 	'',
-	url(r'^$', 'funmove.views.home', name='home'),
-	url(r'^web/', include('web.urls')),
+	url(r'^$', include('order.urls')),
+	#url(r'^$', 'funmove.views.home', name='home'),
+	#url(r'^web/', include('web.urls')),
 	# url(r'^accounts/', include('registration.backends.default.urls')),
-	url(r'^admin/', include(admin.site.urls)),
+	#url(r'^admin/', include(admin.site.urls)),
 	url(r'^backend/', include('backend.urls')),
 	url(r'^order/', include('order.urls')),
 )

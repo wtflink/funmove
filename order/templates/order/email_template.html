@@ -1,0 +1,30 @@
+<html>
+<head>
+</head>
+<body>
+<p>親愛的 {{ order.name }} 您好,</p>
+<br/>
+<p>歡迎您使用『放心搬』，我們已經收到您登錄的資料：</p>
+<p>姓名： {{ order.name }}</p>
+<p>電話： {{ order.cell_phone }}</p>
+<p>生日： {{ order.birth_year}}/{{ order.birth_month }}/{{ order.birth_day}}</p>
+<p>起始地： {{ order.departure }}</p>
+<p>目的地： {{ order.destination}}</p>
+<p>預約時間： {{ order.reservation_date|date:'Y-m-d' }} {{ order.reservation_time|time:'H:i' }}</p>
+<p>預計多久： {{ order.time_needed_hr }}小時{{ order.time_needed_min }}分鐘</p>
+<p>備註: {{ order.remarks }}</p>
+<p>請在兩日之內點選下列連結，進行資料確認。</p>
+<a href="http://www.fuflow.com/order/confirm/{{ order.confirmation_key }}"> 立刻確認>> </a>
+<p>若您無法點選連結，請複製以下網址貼到您的瀏覽器即可。</p>
+<p>http://www.fuflow.com/order/confirm/{{ order.confirmation_key }}</p>
+<br/>
+<p>確認後，您即可開始準備要搬運的物品。</p>
+<p>放心地，搬運您的物品！</p>
+<p>如有任何問題，請來函funmovv@gmail.com，我們會儘速為您處理您的問題。</p>
+<br/>
+<p>放心搬 敬上</p>
+</body>
+</html>
+
+
+

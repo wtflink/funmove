@@ -8,12 +8,10 @@
 目的地： {{ order.destination}}
 預約時間： {{ order.reservation_date|date:'Y-m-d' }} {{ order.reservation_time|time:'H:i' }}
 預計多久： {{ order.time_needed_hr }}小時{{ order.time_needed_min }}分鐘
-remarks: {{ order.remarks }}
+備註: {{ order.remarks }}
 
 請在兩日之內點選下列網址，進行資料確認。
 若您無法點選連結，請複製以下網址貼到您的瀏覽器即可。
-http://127.0.0.1:8000/order/confirm/{{ order.confirmation_key }}
-
 http://www.fuflow.com/order/confirm/{{ order.confirmation_key }}
 
 確認後，您即可開始準備要搬運的物品。
