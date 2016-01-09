@@ -5,13 +5,12 @@
 <head>
 	<title>放心搬，解決你在外搬宿的困擾</title>
 	<meta charset='utf-8' name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="{% static "css/base.css" %}">
 	<link rel="stylesheet" href="{% static "css/jquery-ui-timepicker-addon.css" %}">
-	<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-theme.css" %}">
+	<!--<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-theme.css" %}">-->
 	<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}">
 	<link rel="stylesheet" href="{% static "sidr/css/jquery.sidr.dark.css" %}">
-	<link rel="stylesheet" href="{% static "css/home.css" %}">
 	<link rel="stylesheet" href="{% static "css/order.css" %}">
+	<link rel="stylesheet" href="{% static "css/base.css" %}">
 	<link rel="stylesheet" href="{% static "js/bubbletip/bubbletip.css" %}">
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/hot-sneaks/jquery-ui.css" rel="stylesheet">
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -24,7 +23,6 @@
 	<script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
 	<script src="{% static "sidr/js/jquery.sidr.min.js" %}"></script>	
 	<script src="{% static "js/base.js" %}"></script> 
-	<script src="{% static "js/home.js" %}"></script>	
 	<script src="{% static "js/order.js" %}"></script>
 	<script src="{% static "js/jQuery.bubbletip-1.0.6.js" %}"></script>	
 
@@ -141,7 +139,7 @@ function initialize2(pFrom,pEnd) {
 			    </a>
 			</div>
 			<div id="navigation">
-				    <nav class="navbar navbar-fixed-top navbar-background">
+				    <nav class="navbar navbar-default navbar-fixed-top">
 				    	<div class="navbar-header">
 				    		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
 						        <span class="sr-only">Toggle navigation</span>
@@ -149,7 +147,7 @@ function initialize2(pFrom,pEnd) {
 							    <span class="icon-bar"></span>
 							    <span class="icon-bar"></span>
 						    </button>
-						    <a class="navbar-brand" href="../when/">Funmove放心搬</a>
+						    <a class="navbar-brand" href="http://www.fuflow.com">Funmove放心搬</a>
 				    	</div>
 				    	<div class="navbar-collapse collapse" id="navbar-collapse-1">
 				    		<ul class="nav navbar-nav navbar-left">
@@ -163,8 +161,8 @@ function initialize2(pFrom,pEnd) {
 				    		</ul>
 				    		<ul class="nav navbar-nav navbar-right">
 					            <li><a href="../when">我要放心搬</a></li>
-					            <li><a href="#usage" id="cont">訂單查詢</a></li>
-					            <li><a href="#documentation">與我們聯絡</a></li>
+					            <!---<li><a href="#" id="cont">訂單查詢</a></li>---------->
+					            <li><a href="mailto:funmovv@gmail.com">與我們聯絡</a></li>
 					            
 				        	</ul>
 				    	</div>
@@ -195,6 +193,9 @@ function initialize2(pFrom,pEnd) {
 									
 								<br>
 								<div class="row">
+									<div id="first" class="checkPos"><p>第一次使用嗎？請看這裡</p></div>
+								</div>
+								<div class="row">
 									<div class="col-md-3 "></div>
 									<div class="col-md-6 yesPos">
 										<input onclick="initialize2(id_departure.value,id_destination.value)" class="btn btn-info btn-sm" type="button" value="確認地點">
@@ -205,7 +206,7 @@ function initialize2(pFrom,pEnd) {
 								<div id="time"></div>
 								<div class="row">
 									<div class="col-md-3 "></div>
-									<div class="col-md-6 checkPos">
+									<div class="col-md-6">
 										<input class="btn btn-primary btn1" type="button" value="NEXT">
 									</div>
 									<div class="col-md-3 "></div>
@@ -245,7 +246,8 @@ function initialize2(pFrom,pEnd) {
 									{{ form.time_needed_min.errors }}
 									<label for="id_time_needed_min">使用服務時間(分鐘):</label>
 									{{form.time_needed_min}}
-									<div id="dollar">所需費用: 0元</div><div id="priceHelp">?</div>
+									<div id="dollar">所需費用: 0元</div>
+									<div id="priceHelp" ><img src="/static/images/question.png" style="height:15px;width:15px;"/>計價方式說明</div>
 								</div>
 							</div>
 							<div class="col-md-6 col-xs-6 col-sm-6">
@@ -379,8 +381,10 @@ function initialize2(pFrom,pEnd) {
 					</section>
 					<section id="warning">
 						<div class="row content">
-							<p>很抱歉，我們的服務網頁目前並不支援您的螢幕解析度，敬請見諒！</p><br>
+							<p>很抱歉，我們的服務網頁目前並不支援您的螢幕解析度，敬請見諒！</p>
 							<p>請使用電腦瀏覽器以取得網頁最佳瀏覽品質，謝謝您的配合！</p>
+							<p>建議解析度為1280*720以上之瀏覽環境</p><br>
+							<p>放心搬，歡迎您使用我們的服務！</p>
 						</div>
 					</section>	
             </form>
@@ -411,7 +415,7 @@ function initialize2(pFrom,pEnd) {
 		請先拖曳地圖上的A、B兩點到您所指定的位置<br>
 		A為起始地，B為目的地<br>
 		或者直接在起始地與目的地兩個欄位打上您所指定正確的住址<br>
-		別忘了，確定地點之後，記得按下「確認地點」按鈕<br>
+		別忘了，確定地點之後，記得按下<b>「確認地點」</b>按鈕<br>
 		以利於後續訂單進行喔！
 	</div>	
 

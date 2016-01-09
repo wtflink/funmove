@@ -19,6 +19,7 @@ body:before {
 }
 
 #warning {
+	font-size: 12pt;
 	display:none;
 }
 
@@ -122,6 +123,16 @@ body:before {
 #price {
 	font-size: 16pt;
 	font-weight: bolder;
+}
+
+#priceHelp {
+	font-size: 10pt;
+	font-weight: bolder;
+}
+
+#first {
+	color: #ffffff;
+	font-size: 10pt;
 }
 
 #total, #time {
