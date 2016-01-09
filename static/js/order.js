@@ -41,6 +41,7 @@ $(document).ready(function(){
 			    			$(this).css("border-color","red");
 			    			$('#vali_phone').empty().append("<p>Not available!</p>")
 			    		}
+			    		cacheData();
 		            });
 
 		            
@@ -102,13 +103,13 @@ $(document).ready(function(){
 					});
 
 					$('#priceHelp').bubbletip($('#priceTip'), { 
-						deltaDirection: 'right' ,
+						deltaDirection: 'up' ,
 						positionAtElement: $('#hint')
 					});
 
 					$('.checkPos').bubbletip($('#mapTip'), { 
-						deltaDirection: 'right' ,
-						positionAtElement: $('.yesPos')
+						deltaDirection: 'down' ,
+						positionAtElement: $('.yesPos'),
 					});
 
 					$('#cont').bubbletip($('#contTip'), { 
