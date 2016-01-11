@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import Http404,JsonResponse,HttpResponse
 from django.http.response import HttpResponseRedirect
@@ -58,7 +59,7 @@ def order(request):
 			#save the time that has been reserved
 			Schedule.objects.create( reservation_start = start, 
 									 reservation_end = end, 
-									 title = 'Reserved' )	
+									 title = '已預訂' )	
 
 			#send a mail of the order information to the user by which email address they input
 			#edit the template in the templates/order/email_template.txt to change the context of it
@@ -68,7 +69,7 @@ def order(request):
 			mailcont = Context({ 'order': order })
 			#text_content = text.render(mailcont)
 			html_content = html.render(mailcont)
-			msg = EmailMultiAlternatives('ur order', '', 'funmovv@gmail.com', [sendto])
+			msg = EmailMultiAlternatives('您的放心搬預定確認信', '', 'funmovv@gmail.com', [sendto])
 			msg.attach_alternative(html_content, "text/html")
 			msg.send()
 
