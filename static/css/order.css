@@ -9,6 +9,9 @@ body:before {
   vertical-align: middle;
 }
 
+.container {
+    width: 100%;
+ }
 
 #map, #main, #user, #verify, #warning {
 
@@ -176,24 +179,30 @@ label , #dollar{
 }
 
 /*PC*/
+/*
 @media screen and (min-width: 768px) and (max-width: 1200px){
 	#map .row .decorateForm {width:40%;}
 	#main .row .decorateForm {width:80%;}
 	#calendar {width:80%;}
 	#user .row .decorateForm {width:80%;}
 	#verify .userData {width:80%;font-size: 10pt;}
-	.btnDirection ,.last-btn button{width:80px;}
 	.content {top:calc(20%);}
 } 
-
-@media screen and (min-width: 480px) and (max-width: 768px){
-	
+*/
+@media screen and (min-width: 480px) and (max-width: 992px){
+	.col-xs-12 { width: 50%; }
+	#map .row .decorateForm {width:40%;}
+	#main .row .decorateForm {width:80%;}
+	#calendar {width:80%;}
+	#user .row .decorateForm {width:80%;}
+	#verify .userData {width:80%;font-size: 11pt;}
+	.content {top:calc(10%);}
 	
 } 
 
 
 
-@media screen and (max-height: 579px) {
+@media screen and (max-height: 579px),screen and (max-width: 480px) {
 	#map, #main, #user, #verify {display: none;}
 	#warning {display:block;}
 }
