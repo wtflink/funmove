@@ -35,7 +35,7 @@
 			font: 62.5% "微軟正黑體";
 			margin-top: 10px;
 			padding: 0;
-			overflow:hidden;
+			overflow-y:hidden;
 		}		
 
 	</style>
@@ -201,7 +201,7 @@ function initialize2(pFrom,pEnd) {
 								<div class="row">
 									<div class="col-md-3 "></div>
 									<div class="col-md-6 yesPos">
-										<input onclick="initialize2(id_departure.value,id_destination.value)" class="btn btn-info btn-sm" type="button" value="確認地點">
+										<img onclick="initialize2(id_departure.value,id_destination.value)" class="btn btnDirection" src="/static/images/button/ok.png"/>
 									</div>
 									<div class="col-md-3 "></div>
 								</div>
@@ -210,7 +210,7 @@ function initialize2(pFrom,pEnd) {
 								<div class="row">
 									<div class="col-md-3 "></div>
 									<div class="col-md-6">
-										<input class="btn btn-primary btn1" type="button" value="NEXT">
+										<img class="btn btn1 btnDirection" src="/static/images/button/next.png"/>
 									</div>
 									<div class="col-md-3 "></div>
 								</div>
@@ -225,7 +225,9 @@ function initialize2(pFrom,pEnd) {
 						<div class="row">
 							<div class="col-md-4 col-xs-4"></div>			
 							<div class="col-md-4 col-xs-4">	
-								<div class="col-centered"><button class="btn btn-primary btn3 btnDirection" type="button">PREV</button></div>	
+								<div class="col-centered">
+									<img class="btn btn3 btnDirection" src="/static/images/button/prev.png"/>
+								</div>	
 							</div>	
 							<div class="col-md-4 col-xs-4"></div>					
 						</div>
@@ -260,7 +262,10 @@ function initialize2(pFrom,pEnd) {
 						<div class="row">
 							<div class="col-md-4 col-xs-4"></div>
 							<div class="col-md-4 col-xs-4">
-								<div class="col-centered"><button class="btn btn-primary btn2 btnDirection" type="button">NEXT</button></div>
+								<div class="col-centered">
+								<!---<button class="btn btn-primary btn2 btnDirection" type="button">NEXT</button>---->
+									<img class="btn btn2 btnDirection" src="/static/images/button/next.png"/>
+								</div>
 							</div>
 							<div class="col-md-4 col-xs-4"></div>
 						</div>
@@ -273,7 +278,9 @@ function initialize2(pFrom,pEnd) {
 						<div class="row">
 							<div class="col-md-4 col-xs-4"></div>
 							<div class="col-md-4 col-xs-4">
-								<div class="col-centered"><button class="btn btn-primary btn1 btnDirection" type="button">PREV</button></div>
+								<div class="col-centered">
+									<img class="btn btn1 btnDirection" src="/static/images/button/prev.png"/>
+								</div>
 							</div>
 							<div class="col-md-4 col-xs-4"></div>
 						</div>
@@ -313,7 +320,9 @@ function initialize2(pFrom,pEnd) {
 						<div class="row">
 							<div class="col-md-4 col-xs-4"></div>
 							<div class="col-md-4 col-xs-4">
-								<div class="col-centered"><button onclick="cacheData()" class="btn btn-primary btn4 btnDirection" type="button">NEXT</button></div>
+								<div class="col-centered">
+									<img onclick="cacheData()" class="btn btn4 btnDirection" src="/static/images/button/next.png"/>
+								</div>
 							</div>
 							<div class="col-md-4 col-xs-4"></div>
 						</div>
@@ -365,13 +374,13 @@ function initialize2(pFrom,pEnd) {
 			                			<div class="row col-centered last-btn">
 			                				<div class="row">
 					                			<div class="col-md-4 col-xs-12 col-sm-12">
-					                				<button class="btn btn-primary btn2 btnDirection" type="button">PREV</button>
+					                				<img class="btn btn2 btnDirection" src="/static/images/button/prev.png"/>
 					                			</div>
 					                			<div class="col-md-4 col-xs-6 col-sm-6">
-					                				<button class="btn btn-warning btn3 recheck" type="button">重新檢查</button>
+					                				<img class="btn btn3 btnDirection" src="/static/images/button/check.png"/>
 					                			</div>
 					                			<div class="col-md-4 col-xs-6 col-sm-6">
-					                				<button class="btn btn-success " onClick="checkForm()" type="button">確認送出</button>
+					                				<img onClick="checkForm()" class="btn btnDirection" src="/static/images/button/sent.png"/>
 					                			</div>
 					                		</div>
 			                			</div>
