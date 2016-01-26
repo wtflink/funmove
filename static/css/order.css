@@ -202,7 +202,7 @@ label , #dollar{
 
 
 
-@media screen and (max-height: 579px) {
+@media screen and (max-height: 450px) {
 	#map, #main, #user, #verify {display: none;}
 	#warning {display:block;}
 }
